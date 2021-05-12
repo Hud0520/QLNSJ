@@ -1,15 +1,20 @@
+package Main;
 
 import QLLuong.Edit;
 import QLLuong.QLLuongJFrame;
 import QLNhanVien.HoSoNhanSu;
-import QLNhanVien.trangchu;
+import Util.trangchu;
 import Util.MyTree;
 import Util.MyTree.MyCellRender;
-import com.mycompany.mainform.QLKhoa;
+import QLKhoa.QLKhoa;
+import Util.TrangChu1;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.tree.TreeModel;
 
 
@@ -31,14 +36,23 @@ public class Main2 extends javax.swing.JFrame {
     public Main2() {
         initComponents();
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-        
+        rootPane = getRootPane();
         MyTree tree = new MyTree();
         jTree1.setModel(tree.getTreeModel());
         jTree1.setCellRenderer(tree.new MyCellRender());
         jTree1.setSelectionRow(0);
-        jPanel5.add(new trangchu().getContentPane());
-        this.revalidate();
+        TrangChu1 f = new TrangChu1();
+        jPanel5.add(f);
+        f.setR(jPanel5);
         this.setVisible(true);
+    }
+    
+    public JPanel getjPanel5() {
+        return jPanel5;
+    }
+
+    public void setjPanel5(JPanel jPanel5) {
+        this.jPanel5 = jPanel5;
     }
 
     /**
@@ -49,6 +63,7 @@ public class Main2 extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -56,12 +71,13 @@ public class Main2 extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quan lý nhân sự");
-        setIconImage(new ImageIcon("src/Util/Icon/Users.png").getImage());
-        setPreferredSize(new java.awt.Dimension(1080, 571));
+        setIconImage(new ImageIcon("src/Util/Icon/logo-haui-1.png").getImage());
 
         jTree1.setPreferredSize(new java.awt.Dimension(0, 0));
         jTree1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -88,6 +104,23 @@ public class Main2 extends javax.swing.JFrame {
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
         jMenu1.setText("Menu");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+
+        jMenuItem1.setText("Hồ sơ của tôi");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Log Out");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Hỗ trợ");
@@ -120,34 +153,35 @@ public class Main2 extends javax.swing.JFrame {
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
         // TODO add your handling code here:
         int fselect = jTree1.getRowForPath(jTree1.getSelectionPath());
-        
-            jPanel5.removeAll();
+            
             switch(fselect){
                 case 0 :
+                    jPanel5.removeAll();
                     jPanel5.repaint();
-                    jPanel5.add(new trangchu().getComponent(0));
+                    TrangChu1 f = new TrangChu1();
+                    jPanel5.add(f);
+                    f.setR(jPanel5);
                     jPanel5.revalidate();
                     break;
                 case 1 : 
-                    System.out.println("1");                   
+                    jPanel5.removeAll();                   
                     jPanel5.repaint();
                     jPanel5.add(new QLKhoa().getComponent(0));
                     jPanel5.revalidate();
                     break;
                 case 2 : 
-                    System.out.println("2");
+                    jPanel5.removeAll();
                     jPanel5.repaint();
                     jPanel5.add(new HoSoNhanSu().getComponent(0));
                     jPanel5.revalidate();
                     break;
                 case 3 : 
-                    System.out.println("3");
+                    jPanel5.removeAll();
                     jPanel5.repaint();
                     jPanel5.add(new QLLuongJFrame().getContentPane());
                     jPanel5.revalidate();
                     break;
                 case 4 : 
-                    System.out.println("4");
                     int n = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát chương trình", "Questions", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
                     
                     if(n==0){
@@ -158,6 +192,19 @@ public class Main2 extends javax.swing.JFrame {
         
 //      
     }//GEN-LAST:event_jTree1MouseClicked
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        int n = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất", "Questions", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);           
+        if(n==0){
+            this.dispose();
+            new DangNhap().setVisible(true);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +249,8 @@ public class Main2 extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;

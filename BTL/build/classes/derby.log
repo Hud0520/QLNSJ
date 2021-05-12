@@ -1,0 +1,18 @@
+Wed May 12 23:50:05 ICT 2021 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Wed May 12 23:50:06 ICT 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0179-617c-46fd-ffffbfc646e5 
+on database directory C:\Users\hungd\Desktop\BTL java\BTL\src\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
+Loaded from file:/D:/HAUI/K6/Java/db-derby-10.14.2.0-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=15.0.2+7-27
+user.dir=D:\HAUI\K6\Java\db-derby-10.14.2.0-bin
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\hungd\Desktop\BTL java\BTL\src
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed May 12 23:56:35 ICT 2021:
+Shutting down instance a816c00e-0179-617c-46fd-ffffbfc646e5 on database directory C:\Users\hungd\Desktop\BTL java\BTL\src\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
+Wed May 12 23:56:35 ICT 2021 Thread[DRDAConnThread_3,5,main] (DATABASE = Database), (DRDAID = {6}), Database 'Database' shutdown.

@@ -1,3 +1,5 @@
+package Main;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,12 +14,13 @@ import java.awt.Toolkit;
  * @author Xiaomi
  */
 public class DangNhap extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form DangNhap
      */
     public DangNhap() {
         initComponents();
+        
     }
 
     /**
@@ -63,6 +66,11 @@ public class DangNhap extends javax.swing.JFrame {
         btnDangNhap.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setText("Đăng Nhập");
+        btnDangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDangNhapMouseClicked(evt);
+            }
+        });
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangNhapActionPerformed(evt);
@@ -210,6 +218,10 @@ public class DangNhap extends javax.swing.JFrame {
             new Main2().setVisible(passlog);
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
+
+    private void btnDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangNhapMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDangNhapMouseClicked
 
     /**
      * @param args the command line arguments

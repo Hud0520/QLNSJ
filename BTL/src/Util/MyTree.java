@@ -31,6 +31,7 @@ public class MyTree extends JTree{
         root.add(qlk);
         root.add(qlnv);
         root.add(qll);
+        root.add(new DefaultMutableTreeNode(new MyTreeNode("Thoát", "src/Util/Icon/Exit.png")));
         return new DefaultTreeModel(root);
     }
     
