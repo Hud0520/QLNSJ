@@ -12,3 +12,6 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\hungd\Desktop\BTL java\BTL
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue May 11 08:52:06 ICT 2021: Shutting down Derby engine
+----------------------------------------------------------------
