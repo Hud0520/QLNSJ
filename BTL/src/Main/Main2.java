@@ -1,21 +1,15 @@
 package Main;
 
-import QLLuong.Edit;
 import QLLuong.QLLuongJFrame;
 import QLNhanVien.HoSoNhanSu;
-import Util.trangchu;
 import Util.MyTree;
 import Util.MyTree.MyCellRender;
 import QLKhoa.QLKhoa;
 import Util.TrangChu1;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
-import javax.swing.tree.TreeModel;
 
 
 /*

@@ -1,49 +1,10 @@
-Wed May 12 23:49:39 ICT 2021 Thread[main,5,main] Cleanup action starting
-java.sql.SQLException: XJ004.C : [0] Database
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(SQLExceptionFactory.java:115)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(SQLExceptionFactory.java:141)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Util.java:225)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Util.java:220)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(EmbedConnection.java:3215)
-	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(EmbedConnection.java:772)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(EmbedConnection.java:442)
-	at org.apache.derby.iapi.jdbc.InternalDriver$1.run(InternalDriver.java:660)
-	at org.apache.derby.iapi.jdbc.InternalDriver$1.run(InternalDriver.java:656)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:554)
-	at org.apache.derby.iapi.jdbc.InternalDriver.getNewEmbedConnection(InternalDriver.java:654)
-	at org.apache.derby.iapi.jdbc.InternalDriver.connect(InternalDriver.java:300)
-	at org.apache.derby.iapi.jdbc.InternalDriver.connect(InternalDriver.java:967)
-	at org.apache.derby.iapi.jdbc.AutoloadedDriver.connect(AutoloadedDriver.java:136)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
-	at Util.ConnectDB.<init>(ConnectDB.java:27)
-	at Util.ConnectDB.main(ConnectDB.java:64)
-Caused by: ERROR XJ004: XJ004.C : [0] Database
-	at org.apache.derby.shared.common.error.StandardException.newException(StandardException.java:300)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(SQLExceptionFactory.java:170)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(SQLExceptionFactory.java:75)
-	... 17 more
-============= begin nested exception, level (1) ===========
-ERROR XJ004: XJ004.C : [0] Database
-	at org.apache.derby.shared.common.error.StandardException.newException(StandardException.java:300)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(SQLExceptionFactory.java:170)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(SQLExceptionFactory.java:75)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(SQLExceptionFactory.java:141)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Util.java:225)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Util.java:220)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(EmbedConnection.java:3215)
-	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(EmbedConnection.java:772)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(EmbedConnection.java:442)
-	at org.apache.derby.iapi.jdbc.InternalDriver$1.run(InternalDriver.java:660)
-	at org.apache.derby.iapi.jdbc.InternalDriver$1.run(InternalDriver.java:656)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:554)
-	at org.apache.derby.iapi.jdbc.InternalDriver.getNewEmbedConnection(InternalDriver.java:654)
-	at org.apache.derby.iapi.jdbc.InternalDriver.connect(InternalDriver.java:300)
-	at org.apache.derby.iapi.jdbc.InternalDriver.connect(InternalDriver.java:967)
-	at org.apache.derby.iapi.jdbc.AutoloadedDriver.connect(AutoloadedDriver.java:136)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
-	at Util.ConnectDB.<init>(ConnectDB.java:27)
-	at Util.ConnectDB.main(ConnectDB.java:64)
-============= end nested exception, level (1) ===========
-Cleanup action completed
+----------------------------------------------------------------
+Thu May 13 10:15:02 ICT 2021D001 : [0] The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585), [1] a816c00e-0179-63b8-7174-00000356b948, [2] C:\Users\hungd\Desktop\BTL java\BTL\QLNS, [3] jdk.internal.loader.ClassLoaders$AppClassLoader@2ff4acd0, [4] file:/C:/Users/hungd/Desktop/BTL%20java/db-derby-10.15.2.0-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=15.0.2+7-27
+user.dir=C:\Users\hungd\Desktop\BTL java\BTL
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+C005 : [0] 

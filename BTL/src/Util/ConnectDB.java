@@ -17,13 +17,13 @@ public class ConnectDB {
     ResultSet rs = null;
     Connection cn =null;
     
-    String url ="jdbc:derby://localhost:1527/Database";
+    String url ="jdbc:derby:QLNS;create=true";
     String uname ="root";
     String pword ="root";
 
     public ConnectDB(){
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
             cn = DriverManager.getConnection(url,uname,pword);
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
@@ -33,6 +33,10 @@ public class ConnectDB {
             // TODO Auto-generated catch block
             JOptionPane.showMessageDialog(null,"Không kết nối được","Error", 0, null);
             e.printStackTrace();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -62,8 +66,6 @@ public class ConnectDB {
     }
     public static void main(String[] args) {
         ConnectDB derby= new ConnectDB();
-        derby.doSql("CREATE TABLE FIRSTTABLE\n" +
-"    (ID INT PRIMARY KEY,\n" +
-"    NAME VARCHAR(12))");
+        derby.doSql("Create table gia(ten varchar(10))");
     }
 }
