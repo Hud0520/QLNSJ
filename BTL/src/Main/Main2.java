@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  * @author Hud
  */
 public class Main2 extends javax.swing.JFrame {
-
+    public static int treeSelected = 0;
     /**
      * Creates new form Main2
      */
@@ -34,10 +34,10 @@ public class Main2 extends javax.swing.JFrame {
         MyTree tree = new MyTree();
         jTree1.setModel(tree.getTreeModel());
         jTree1.setCellRenderer(tree.new MyCellRender());
-        jTree1.setSelectionRow(0);
+        jTree1.setSelectionRow(treeSelected);
         TrangChu1 f = new TrangChu1();
         jPanel5.add(f);
-        f.setR(jPanel5);
+        f.setR(jPanel5,jTree1);
         this.setVisible(true);
     }
     
@@ -146,15 +146,15 @@ public class Main2 extends javax.swing.JFrame {
 
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
         // TODO add your handling code here:
-        int fselect = jTree1.getRowForPath(jTree1.getSelectionPath());
-            
-            switch(fselect){
+        int oldSelected = treeSelected;
+        treeSelected = jTree1.getRowForPath(jTree1.getSelectionPath());
+            switch(treeSelected){
                 case 0 :
                     jPanel5.removeAll();
                     jPanel5.repaint();
                     TrangChu1 f = new TrangChu1();
                     jPanel5.add(f);
-                    f.setR(jPanel5);
+                    f.setR(jPanel5,jTree1);
                     jPanel5.revalidate();
                     break;
                 case 1 : 
@@ -180,6 +180,8 @@ public class Main2 extends javax.swing.JFrame {
                     
                     if(n==0){
                         System.exit(0);
+                    }else{
+                        jTree1.setSelectionRow(oldSelected);
                     }
                     break;
             }
