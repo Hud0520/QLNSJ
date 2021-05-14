@@ -25,6 +25,8 @@ public class TrangChu1 extends javax.swing.JPanel {
     JTree t;
     /**
      * Creates new form TrangChu1
+     * @param root
+     * @param tree
      */
     public  void setR(JPanel root,JTree tree){
         r =root;
