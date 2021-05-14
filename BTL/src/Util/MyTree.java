@@ -24,7 +24,7 @@ import javax.swing.tree.TreeNode;
  */
 public class MyTree extends JTree{
     public DefaultTreeModel getTreeModel(){
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode(new MyTreeNode("Quản lý nhân sự", null));
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(new MyTreeNode("Trang Chủ", "src/Util/Icon/Home.png"));
         DefaultMutableTreeNode qlk = new DefaultMutableTreeNode(new MyTreeNode("Quản lý nhân sự theo khoa", "src/Util/Icon/Nhansu.png"));
         DefaultMutableTreeNode qlnv = new DefaultMutableTreeNode(new MyTreeNode("Quản lý nhân viên", "src/Util/Icon/Users.png"));
         DefaultMutableTreeNode qll = new DefaultMutableTreeNode(new MyTreeNode("Quản lý lương", "src/Util/Icon/luong1.png"));
@@ -46,7 +46,7 @@ public class MyTree extends JTree{
             if(node.isLeaf()){
                 setIcon(new ImageIcon(myTreeNode.getIcon()));
             }else{
-                setIcon(null);
+                setIcon(new ImageIcon(myTreeNode.getIcon()));
             }
             return c;
         }

@@ -172,7 +172,7 @@ public class Main2 extends javax.swing.JFrame {
                 case 3 : 
                     jPanel5.removeAll();
                     jPanel5.repaint();
-                    jPanel5.add(new QLLuongJFrame().getContentPane());
+                    jPanel5.add(new QLLuongJFrame().getComponent(0));
                     jPanel5.revalidate();
                     break;
                 case 4 : 
