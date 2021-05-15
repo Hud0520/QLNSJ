@@ -46,7 +46,6 @@ public class QLKhoa extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         cbxDiaChi = new javax.swing.JComboBox<>();
         pblChucNang = new javax.swing.JPanel();
-        btnSapXep = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
@@ -177,10 +176,6 @@ public class QLKhoa extends javax.swing.JFrame {
 
         pblChucNang.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức năng"));
 
-        btnSapXep.setBackground(new java.awt.Color(255, 255, 255));
-        btnSapXep.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSapXep.setText("Sắp xếp");
-
         btnThoat.setBackground(new java.awt.Color(255, 255, 255));
         btnThoat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnThoat.setText("Thoát");
@@ -207,20 +202,19 @@ public class QLKhoa extends javax.swing.JFrame {
             pblChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pblChucNangLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pblChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSapXep, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(pblChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pblChucNangLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pblChucNangLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pblChucNangLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(pblChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                            .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(pblChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pblChucNangLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(pblChucNangLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pblChucNangLayout.setVerticalGroup(
@@ -235,9 +229,7 @@ public class QLKhoa extends javax.swing.JFrame {
                     .addComponent(btnXoa)
                     .addComponent(btnTimKiem))
                 .addGap(18, 18, 18)
-                .addGroup(pblChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSapXep)
-                    .addComponent(btnThoat))
+                .addComponent(btnThoat)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -372,7 +364,6 @@ public class QLKhoa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSapXep;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat;

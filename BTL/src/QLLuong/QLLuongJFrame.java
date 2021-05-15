@@ -5,33 +5,36 @@
  */
 package QLLuong;
 
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Date;
+import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.filechooser.FileSystemView;
 
 /**
  *
  * @author Hud
  */
 public class QLLuongJFrame extends javax.swing.JFrame {
-
+    private LinkedList<LuongNhanvien> listL = new LinkedList<>();
+    private LinkedList listNV = new LinkedList();
+    private int selectedRow = -1;
     /**
      * Creates new form NewJFrame
      */
     public QLLuongJFrame() {
         initComponents();
+        listL.add( new LuongNhanvien("m1", "hi", new Date(2020, 05, 20), "cntt", "Tiến sĩ", "Trưởng khoa", 2, (float)4.3, new Date(2020,05,20)));
+        jTable1.setModel(new Table(listL));
     }
 
     /**
@@ -85,7 +88,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "TT", "Ho Ten", "Ngày sinh", "Đơn vị", "Trình độ", "Chức danh", "Bậc", "Hệ số lương", "Thời điểm"
+                "TT", "Họ tên", "Ngày sinh", "Đơn vị", "Trình độ", "Chức danh", "Bậc", "Hệ số lương", "Thời điểm"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -107,14 +110,19 @@ public class QLLuongJFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setLayout(new java.awt.GridLayout(2, 4));
 
         jButton6.setIcon(new ImageIcon("src/Util/ICon/Add.png"));
         jButton6.setText("Thêm");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
         jPanel3.add(jButton6);
 
         jButton2.setIcon(new ImageIcon("src/Util/Icon/Edit.png"));
@@ -165,14 +173,12 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1017, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1035, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -180,10 +186,10 @@ public class QLLuongJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -196,11 +202,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String findName = (String)JOptionPane.showInputDialog(this,"Nhập tên nhân viên:","Find",
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                null,
-                "");    
+          
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -235,6 +237,15 @@ public class QLLuongJFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+        String manv = (String)JOptionPane.showInputDialog(this,"Nhập mã nhân viên:","Thêm mới",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "");  
+    }//GEN-LAST:event_jButton6MouseClicked
 
     /**
      * @param args the command line arguments
