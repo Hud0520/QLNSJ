@@ -6,6 +6,7 @@ import Util.MyTree;
 import Util.MyTree.MyCellRender;
 import QLKhoa.QLKhoa;
 import Util.TrangChu1;
+import com.khoa_lop_lich.LichDay;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -176,6 +177,12 @@ public class Main2 extends javax.swing.JFrame {
                     jPanel5.revalidate();
                     break;
                 case 4 : 
+                    jPanel5.removeAll();
+                    jPanel5.repaint();
+                    jPanel5.add(new LichDay().getComponent(0));
+                    jPanel5.revalidate();
+                    break;
+                case 5 : 
                     int n = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát chương trình", "Questions", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
                     
                     if(n==0){

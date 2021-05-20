@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
+package Util;
 
 /**
  *
  * @author Xiaomi
  */
 public class NhanVien {
-    private String maNV, hotenNV, ngaySinh, gioiTinh, danToc, trinhDo, bac, ngayVaoLam, sdt, diaChi;
+    private String maNV, hotenNV, ngaySinh, gioiTinh, danToc, trinhDo, ngayVaoLam, sdt, diaChi;
     
 }

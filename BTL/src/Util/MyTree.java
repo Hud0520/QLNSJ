@@ -28,9 +28,11 @@ public class MyTree extends JTree{
         DefaultMutableTreeNode qlk = new DefaultMutableTreeNode(new MyTreeNode("Quản lý khoa", "src/Util/Icon/Nhansu.png"));
         DefaultMutableTreeNode qlnv = new DefaultMutableTreeNode(new MyTreeNode("Quản lý nhân viên", "src/Util/Icon/Users.png"));
         DefaultMutableTreeNode qll = new DefaultMutableTreeNode(new MyTreeNode("Quản lý lương", "src/Util/Icon/luong1.png"));
+        DefaultMutableTreeNode qlgd = new DefaultMutableTreeNode(new MyTreeNode("Quản lý giảng dạy", "src/Util/Icon/Task list.png"));
         root.add(qlk);
         root.add(qlnv);
         root.add(qll);
+        root.add(qlgd);
         root.add(new DefaultMutableTreeNode(new MyTreeNode("Thoát", "src/Util/Icon/Exit.png")));
         return new DefaultTreeModel(root);
     }
