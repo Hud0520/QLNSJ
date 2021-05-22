@@ -293,7 +293,8 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                 if (selectedRow != -1) {
                     Edit sua = new Edit(listL.get(selectedRow), jTable1, listL, "edit");
                     sua.setVisible(rootPaneCheckingEnabled);
-                    if(sua.isUpdateClick())selectedRow = -1;
+                    selectedRow=-1;
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Nhân viên không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -301,7 +302,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         }else{
             Edit sua = new Edit(listL.get(selectedRow), jTable1, listL, "edit");
             sua.setVisible(rootPaneCheckingEnabled);
-            if(sua.isUpdateClick())selectedRow = -1;
+            selectedRow=-1;
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed

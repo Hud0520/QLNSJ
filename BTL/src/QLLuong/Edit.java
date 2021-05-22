@@ -23,13 +23,7 @@ public class Edit extends javax.swing.JFrame {
     private JTable tb;
     private LinkedList<Luong> listL = new LinkedList<>();
     private String type;
-    private boolean updateClick= false;
 
-    public boolean isUpdateClick() {
-        return updateClick;
-    }
-
-    
     private MConnect cn = new MConnect();
     public Luong getNv() {
         return nv;
@@ -394,7 +388,6 @@ public class Edit extends javax.swing.JFrame {
                     this.dispose();
                     break;
             }
-            updateClick= true;
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(),"Chú ý",JOptionPane.WARNING_MESSAGE);
