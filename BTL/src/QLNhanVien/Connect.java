@@ -5,6 +5,7 @@
  */
 package QLNhanVien;
 
+import Util.ConnectDB;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -24,19 +25,8 @@ public class Connect {
     //ket noi den database
    
     public void getConnect() 
-    {
-        try{
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;database=btlJava";
-            String user="sa";
-            String password="123";            
-            con = DriverManager.getConnection(connectionUrl, user, password);
-        }
-        catch (ClassNotFoundException|SQLException e)
-        {
-            JOptionPane.showMessageDialog(null,"Khong the ket noi voi database \n"+e);
-        }
-        
+    {      
+            con = new ConnectDB().getCn();
     }
     public ResultSet GetDataNV(String jtable) throws SQLException
     {
