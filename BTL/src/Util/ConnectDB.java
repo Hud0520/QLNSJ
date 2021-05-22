@@ -11,20 +11,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
-import org.apache.derby.iapi.jdbc.Driver42;
 public class ConnectDB {
     Statement stm =null;
     ResultSet rs = null;
     Connection cn =null;
     
-    String url ="jdbc:derby:QLNS;create=true";
-    String uname ="root";
-    String pword ="root";
+    String connectionUrl = "jdbc:sqlserver://PCS-1952:1433;database=btlJava";
+    String user="sa";
+    String password="123456";  
 
     public ConnectDB(){
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
-            cn = DriverManager.getConnection(url,uname,pword);
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            cn = DriverManager.getConnection(connectionUrl,user,password);
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             JOptionPane.showMessageDialog(null,"Không tìm thấy driver","Error", 0, null);
@@ -33,10 +32,6 @@ public class ConnectDB {
             // TODO Auto-generated catch block
             JOptionPane.showMessageDialog(null,"Không kết nối được","Error", 0, null);
             e.printStackTrace();
-        } catch (InstantiationException ex) {
-            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -65,7 +60,29 @@ public class ConnectDB {
         return rs;
     }
     public static void main(String[] args) {
-        ConnectDB derby= new ConnectDB();
-        derby.doSql("Create table gia(ten varchar(10))");
+            try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String connectionUrl = "jdbc:sqlserver://PCS-1952:1433;database=btlJava";
+            String user="sa";
+            String password="123456";            
+            Connection con = DriverManager.getConnection(connectionUrl, user, password);
+            
+            Statement stmt =con.createStatement();
+            String sql = "Select * from TAIKHOAN";
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                System.out.println("ID:"+rs.getString(1));
+                System.out.println("Ten : "+rs.getString(2));
+            }
+            rs.close() ;stmt.close();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    public Connection getCn() {
+        return cn;
+    }
+    
 }
