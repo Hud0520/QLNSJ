@@ -48,7 +48,7 @@ public class Table extends AbstractTableModel{
             case 0: return rowIndex;
             case 1: return list.get(rowIndex).getHotenNV();
             case 2: return list.get(rowIndex).getNgaySinh();
-            case 3: return null;
+            case 3: return list.get(rowIndex).getMaKhoa();
             case 4: return list.get(rowIndex).getTrinhDo();
             case 5: return list.get(rowIndex).getChucDanh();
             case 6: return list.get(rowIndex).getBac();

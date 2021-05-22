@@ -45,7 +45,7 @@ public class Edit extends javax.swing.JFrame {
         jLabel6.setText(nv.getMaNV());
         jLabel16.setText(nv.getHotenNV());
         jLabel7.setText(nv.getNgaySinh());
-        jLabel8.setText("");
+        jLabel8.setText(nv.getMaKhoa());
         jLabel9.setText(nv.getTrinhDo());
         jTextField1.setText(nv.getChucDanh());
         jTextField2.setText(""+nv.getBac());

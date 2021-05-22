@@ -58,16 +58,5 @@ public class Luong extends  NhanVien{
     public void setThoiDiem(String thoiDiem) {
         this.thoiDiem = thoiDiem;
     }
-
-    public String getMaNV() {
-        return maNV;
-    }
-
-    public void setMaNV(String maNV) {
-        this.maNV = maNV;
-    }
-    
-    
-    
-    
+     
 }
