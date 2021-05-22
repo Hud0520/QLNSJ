@@ -5,13 +5,12 @@
  */
 package QLLuong;
 
-import Util.Luong;
 import java.awt.GridLayout;
 import java.awt.Label;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.Date;
 import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -26,15 +25,15 @@ import javax.swing.JTextField;
  * @author Hud
  */
 public class QLLuongJFrame extends javax.swing.JFrame {
-    private LinkedList<Luong> listL = new LinkedList<>();
+    private LinkedList<LuongNhanvien> listL = new LinkedList<>();
+    private LinkedList listNV = new LinkedList();
     private int selectedRow = -1;
-    private MConnect db= new MConnect();
     /**
      * Creates new form NewJFrame
      */
     public QLLuongJFrame() {
         initComponents();
-        listL= db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
+        listL.add( new LuongNhanvien("m1", "hi", new Date(2020, 05, 20), "cntt", "Tiến sĩ", "Trưởng khoa", 2, (float)4.3, new Date(2020,05,20)));
         jTable1.setModel(new Table(listL));
     }
 
@@ -92,11 +91,6 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                 "TT", "Họ tên", "Ngày sinh", "Đơn vị", "Trình độ", "Chức danh", "Bậc", "Hệ số lương", "Thời điểm"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -141,19 +135,9 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         jPanel3.add(jButton2);
 
         jButton7.setText("Xóa");
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
-            }
-        });
         jPanel3.add(jButton7);
 
         jButton1.setText("Sắp xếp");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -163,11 +147,6 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
         jButton5.setIcon(new ImageIcon("src/Util/Icon/Refresh.png"));
         jButton5.setText("Làm mới");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
-            }
-        });
         jPanel3.add(jButton5);
 
         jButton3.setIcon(new ImageIcon("src/Util/Icon/Search.png"));
@@ -188,11 +167,6 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         jPanel3.add(jButton4);
 
         jButton8.setText("Thoát");
-        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton8MouseClicked(evt);
-            }
-        });
         jPanel3.add(jButton8);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,263 +209,43 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         JPanel f = new JPanel(new GridLayout(4, 1));
         f.add(new Label("Tìm kiếm theo:"));
-        JComboBox<String> option = new JComboBox<String>(new String[]{"Họ tên","Bậc","Trình độ"});
-        f.add(option);
+        f.add(new JComboBox<String>(new String[]{"Họ tên","Đơn vị","Trình độ"}));
         f.add(new JLabel("Nhập từ khóa :"));
-        JTextField tukhoa = new JTextField(30);
-        f.add(tukhoa);
+        f.add(new JTextField(30));
         int result= JOptionPane.showConfirmDialog(null, f, "Tìm kiếm",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        
-        if(result == 0){
-            switch(option.getSelectedIndex()){
-                case 0:
-                    String tk =tukhoa.getText().toLowerCase();
-                    for(Luong i : listL){
-                        if(!i.getHotenNV().toLowerCase().contains(tk)){
-                            listL.remove(i);
-                        }
-                    }
-                    jTable1.setModel(new Table(listL));
-                    break;
-                case 1:
-                    int tk1 = Integer.parseInt(tukhoa.getText());
-                    for(Luong i : listL){
-                        if(Integer.compare(i.getBac(), tk1)!=0){
-                            listL.remove(i);
-                        }
-                    }
-                    jTable1.setModel(new Table(listL));
-                    break;
-                case 2:
-                    String tk3 =tukhoa.getText().toLowerCase();
-                    for(Luong i : listL){
-                        if(!i.getTrinhDo().equalsIgnoreCase(tk3)){
-                            listL.remove(i);
-                        }
-                    }
-                    jTable1.setModel(new Table(listL));
-                    break;
-            }
-        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if(selectedRow == -1){
-            String manv = (String) JOptionPane.showInputDialog(this, "Nhập mã nhân viên:", "Chỉnh sửa",
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                null,
-                "");
-            if (manv != null && !manv.isEmpty()) {
-                for (Luong i : listL) {
-                    if (i.getMaNV().trim().equalsIgnoreCase(manv.trim())) {
-                        selectedRow = listL.indexOf(i);
-                        break;
-                    }
-                }
-                if (selectedRow != -1) {
-                    Edit sua = new Edit(listL.get(selectedRow), jTable1, listL, "edit");
-                    sua.setVisible(rootPaneCheckingEnabled);
-                    selectedRow=-1;
-                    
-                } else {
-                    JOptionPane.showMessageDialog(null, "Nhân viên không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-        }else{
-            Edit sua = new Edit(listL.get(selectedRow), jTable1, listL, "edit");
-            sua.setVisible(rootPaneCheckingEnabled);
-            selectedRow=-1;
-        }
-
+        new Edit().setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jButton2ActionPerformed
-    private String line(){
-        String line="+";
-        for(int i= 1; i<149; i++){
-            if(i== 11 || i == 37 || i== 53 || i== 69 || i== 85 || i== 101 || i == 117 || i == 133){
-                line+="+";
-            }else{
-                line+="-";
-            }
-        }
-        return line+"+\n";
-    }
+
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-        File name = new File ("Danh sach.txt");
-        JFileChooser chooser = new JFileChooser(System.getProperty("user.home") + "/Desktop");
-        chooser.setSelectedFile(name);
-        int select = chooser.showSaveDialog(chooser);
-        if (select == JFileChooser.APPROVE_OPTION) {
+        JFileChooser chooser = new JFileChooser();
+        int i = chooser.showSaveDialog(chooser);
+        if (i == JFileChooser.APPROVE_OPTION) {
             File file = chooser.getSelectedFile();
             try {
-                FileWriter fw = new FileWriter(file);
-                Table tb= new Table();
-                fw.write("Danh sách mức lương của nhân viên.\n\n\n");
-                fw.write(line());
-                
-                //In tiêu đề
-                fw.write(String.format("|%-10s", tb.getColumnName(0)));
-                fw.write(String.format("|%-25s", tb.getColumnName(1)));
-                fw.write(String.format("|%-15s", tb.getColumnName(2)));
-                fw.write(String.format("|%-15s", tb.getColumnName(3)));
-                fw.write(String.format("|%-15s", tb.getColumnName(4)));
-                fw.write(String.format("|%-15s", tb.getColumnName(5)));
-                fw.write(String.format("|%-15s", tb.getColumnName(6)));
-                fw.write(String.format("|%-15s", tb.getColumnName(7)));
-                fw.write(String.format("|%-15s|\n", tb.getColumnName(8)));
-                fw.write(line());
-                //In dữ liệu
-                for(int i=0 ;i <listL.size() ;i++){
-                    fw.write(String.format("|%-10s",i ));
-                    fw.write(String.format("|%-25s", listL.get(i).getHotenNV()));
-                    fw.write(String.format("|%-15s", listL.get(i).getNgaySinh()));
-                    fw.write(String.format("|%-15s", ""));
-                    fw.write(String.format("|%-15s", listL.get(i).getTrinhDo()));
-                    fw.write(String.format("|%-15s", listL.get(i).getChucDanh()));
-                    fw.write(String.format("|%-15s", ""+listL.get(i).getBac()));
-                    fw.write(String.format("|%-15s", ""+listL.get(i).getHeSoLuong()));
-                    fw.write(String.format("|%-15s|\n", listL.get(i).getThoiDiem()));
-                }
-                fw.write(line());
-                fw.flush();
-                fw.close();
+                FileWriter out = new FileWriter(file + ".xls");
+                BufferedWriter bwrite = new BufferedWriter(out);
+                bwrite.write("\n");
+                bwrite.close();
                 JOptionPane.showMessageDialog(null, "Lưu file thành công!");
             } catch (Exception e2) {
                 JOptionPane.showMessageDialog(null, "Lỗi khi lưu file!");
-                e2.printStackTrace();
             }
         }
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
-        String sql = "Select * from LUONG right join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien"
-                + " where NHANVIEN.MaNhanVien not in (Select MaNhanVien from LUONG)";
-        LinkedList<Luong> listNew = db.getALLData(sql);
-        String manv = (String) JOptionPane.showInputDialog(this, "Nhập mã nhân viên:", "Thêm mới",
+        String manv = (String)JOptionPane.showInputDialog(this,"Nhập mã nhân viên:","Thêm mới",
                 JOptionPane.PLAIN_MESSAGE,
                 null,
                 null,
-                "");
-
-        //Thêm
-        if (manv != null && !manv.isEmpty()) {
-            int index = -1;
-            for (Luong i : listNew) {
-                if (i.getMaNV().trim().equalsIgnoreCase(manv.trim())) {
-                    index = listNew.indexOf(i);
-                    break;
-                }
-            }
-            if (index != -1) {
-                Edit them = new Edit(listNew.get(index), jTable1, listL, "new");
-                them.setVisible(true);
-                listNew.remove(index);
-            } else {
-                for (Luong i : listL) {
-                    if (i.getMaNV().trim().equalsIgnoreCase(manv.trim())) {
-                        index = listL.indexOf(i);
-                        break;
-                    }
-                }
-                if (index != -1) {
-                    JOptionPane.showMessageDialog(null, "Bản ghi đã tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Không tồn tại nhân viên " + manv, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-        }
+                "");  
     }//GEN-LAST:event_jButton6MouseClicked
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        selectedRow = jTable1.getSelectedRow();
-    }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        // TODO add your handling code here:
-        if (selectedRow == -1) {
-            String manv = (String) JOptionPane.showInputDialog(this, "Nhập mã nhân viên:", "Xóa",
-                    JOptionPane.PLAIN_MESSAGE,
-                    null,
-                    null,
-                    "");
-            if (manv != null && !manv.isEmpty()) {
-                for (Luong i : listL) {
-                    if (i.getMaNV().trim().equalsIgnoreCase(manv.trim())) {
-                        selectedRow = listL.indexOf(i);
-                        break;
-                    }
-                }
-                if (selectedRow != -1) {
-                    int rs = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa lương nhân viên " + listL.get(selectedRow).getMaNV(), "Cẩn thận", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                    if (rs == 0) {
-                        db.delete(listL.get(selectedRow));
-                        listL.remove(selectedRow);
-                        jTable1.setModel(new Table(listL));
-                        selectedRow = -1;
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Bản ghi không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                }
-                
-            }
-        }else{
-            int rs = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa lương nhân viên " + listL.get(selectedRow).getMaNV(), "Cẩn thận", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-            if (rs == 0) {
-                db.delete(listL.get(selectedRow));
-                listL.remove(selectedRow);
-                jTable1.setModel(new Table(listL));
-                selectedRow = -1;
-            }
-        }
-    }//GEN-LAST:event_jButton7MouseClicked
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        JPanel f = new JPanel(new GridLayout(2, 1));
-        f.add(new Label("Sắp xếp theo :"));
-        JComboBox<String>option = new JComboBox<String>(new String[]{"Họ tên","Bậc"});
-        f.add(option);
-        int result= JOptionPane.showConfirmDialog(null, f, "Sắp xếp",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        
-        if(result == 0){
-            switch(option.getSelectedIndex()){
-                case 0 :
-                    Comparator<Luong> c = (o1, o2) -> {
-                        return o1.getHotenNV().compareToIgnoreCase(o2.getHotenNV()); //To change body of generated lambdas, choose Tools | Templates.
-                    };
-                    Collections.sort(listL, c);
-                    break;
-                case 1 :
-                    Comparator<Luong> c1 = (o1, o2) -> {
-                        return Integer.compare(o1.getBac(), o2.getBac()); //To change body of generated lambdas, choose Tools | Templates.
-                    };
-                    Collections.sort(listL, c1);
-                    break;
-            }
-            jTable1.setModel(new Table(listL));
-        }
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        // TODO add your handling code here:
-        listL= db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
-        String sql = "Select * from LUONG right join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien"
-                + " where NHANVIEN.MaNhanVien not in (Select MaNhanVien from LUONG)";
-        LinkedList<Luong> listNew = db.getALLData(sql);
-        jTable1.setModel(new Table(listL));
-    }//GEN-LAST:event_jButton5MouseClicked
-
-    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-        // TODO add your handling code here:
-        int n = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát chương trình", "Questions", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (n == 0) {
-            System.exit(0);
-        }
-    }//GEN-LAST:event_jButton8MouseClicked
 
     /**
      * @param args the command line arguments

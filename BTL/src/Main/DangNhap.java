@@ -1,5 +1,11 @@
 package Main;
 
+import QLNhanVien.Connect;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +21,7 @@ public class DangNhap extends javax.swing.JFrame {
     /**
      * Creates new form DangNhap
      */
+    Connect cn=new Connect();
     public DangNhap() {
         initComponents();
         
@@ -208,11 +215,19 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
-        boolean passlog = true;
-        if(passlog){
-            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            this.dispose();
-            new Main2().setVisible(passlog);
+        cn.getConnect();
+        try {
+            if(!cn.checkTenDangNhap(txtTenDangNhap.getText()))JOptionPane.showMessageDialog(this, "Tên đăng nhập không đúng","", JOptionPane.ERROR_MESSAGE);
+            else if(!cn.checkMatKhau(txtMatKhau.getText()))JOptionPane.showMessageDialog(this, "Mật Khẩu không đúng","", JOptionPane.ERROR_MESSAGE);
+            else{
+                    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    this.dispose();
+                    new Main2().setVisible(true);
+                    }
+        } catch (SQLException ex) {
+            Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
