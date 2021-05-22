@@ -215,7 +215,9 @@ public class TrangChu1 extends javax.swing.JPanel {
         // TODO add your handling code here:
         r.removeAll();
         r.repaint();
-        r.add(new QLLuongJFrame().getComponent(0));
+        QLLuongJFrame luong = new QLLuongJFrame();
+        luong.setR(r,t);
+        r.add(luong.getComponent(0));
         r.revalidate();
         t.setSelectionRow(3);
         Main2.treeSelected= 3;

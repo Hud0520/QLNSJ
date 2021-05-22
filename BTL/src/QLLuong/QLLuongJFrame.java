@@ -6,6 +6,7 @@
 package QLLuong;
 
 import Util.Luong;
+import Util.TrangChu1;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.io.File;
@@ -20,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JTree;
 
 /**
  *
@@ -29,6 +31,9 @@ public class QLLuongJFrame extends javax.swing.JFrame {
     private LinkedList<Luong> listL = new LinkedList<>();
     private int selectedRow = -1;
     private MConnect db= new MConnect();
+    JPanel r;
+    JTree t;
+
     /**
      * Creates new form NewJFrame
      */
@@ -36,6 +41,10 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         initComponents();
         listL= db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
         jTable1.setModel(new Table(listL));
+    }
+    public  void setR(JPanel rot, JTree t){
+        this.r = rot;
+        this.t = t;
     }
 
     /**
@@ -487,10 +496,12 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
         // TODO add your handling code here:
-        int n = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát chương trình", "Questions", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (n == 0) {
-            System.exit(0);
-        }
+        r.removeAll();
+        r.repaint();
+        TrangChu1 tc= new TrangChu1();
+        tc.setR(r, t);
+        r.add(tc.getComponent(0));
+        r.revalidate();
     }//GEN-LAST:event_jButton8MouseClicked
 
     /**

@@ -1,5 +1,12 @@
 package Main;
 
+import Util.ConnectDB;
+import java.util.HashMap;
+import java.sql.*;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -34,8 +41,8 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtTenDangNhap = new javax.swing.JTextField();
-        txtMatKhau = new javax.swing.JTextField();
         btnDangNhap = new javax.swing.JButton();
+        txtMatKhau = new javax.swing.JPasswordField();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -56,8 +63,6 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel5.setText("Mật Khẩu:");
 
         txtTenDangNhap.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        txtMatKhau.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         btnDangNhap.setBackground(new java.awt.Color(0, 102, 255));
         btnDangNhap.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -85,15 +90,13 @@ public class DangNhap extends javax.swing.JFrame {
                         .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(29, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(txtMatKhau)
+                            .addComponent(txtTenDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -105,8 +108,8 @@ public class DangNhap extends javax.swing.JFrame {
                     .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -208,11 +211,30 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
-        boolean passlog = true;
+        boolean passlog= false;
+        ConnectDB db= new ConnectDB();
+        HashMap<String,String> listacc= new HashMap<>();
+        ResultSet r = db.getData("select * from TAIKHOAN");
+        try {
+            while(r.next()){
+            listacc.put(r.getString(1).trim(), r.getString(2).trim());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String us = txtTenDangNhap.getText().trim();
+        String ps = txtMatKhau.getText().trim();
+        for(Map.Entry<String,String> e : listacc.entrySet()){
+            if(e.getKey().equalsIgnoreCase(us) && e.getValue().equalsIgnoreCase(ps)){
+                passlog= true;
+                break;
+            }
+        }
         if(passlog){
-            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            new Main2().setVisible(true);
             this.dispose();
-            new Main2().setVisible(passlog);
+        }else{
+            JOptionPane.showMessageDialog(null, "Đăng nhập thất bại","Thông báo",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
@@ -267,7 +289,7 @@ public class DangNhap extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField txtMatKhau;
+    private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JTextField txtTenDangNhap;
     // End of variables declaration//GEN-END:variables
 }
