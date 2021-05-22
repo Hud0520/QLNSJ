@@ -5,7 +5,7 @@
  */
 package QLNhanVien;
 
-import connect.Connect;
+import Util.ConnectDB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,14 +25,13 @@ public class HoSoNhanSu extends javax.swing.JFrame {
      */
     public static ResultSet rs=null;
     public Statement st;
-    Connect cn=new Connect();
+    ConnectDB cn=new ConnectDB();
    
      private void LoadData()
     {
-        Connect cn=new Connect();
-        cn.getConnect();
+        ConnectDB cn=new ConnectDB();
         try {
-            rs=cn.GetData("NHANVIEN");
+            rs=cn.getData("NHANVIEN");
             jTableNhanVien.removeAll();
             String []tieuDe={"Mã Nhân Viên","Họ Tên","Ngày Sinh","Giới Tính", "Dân Tộc","Mã Khoa","Bậc","Trình Độ","Ngày Vào Làm","Số Điện Thoại","Địa Chỉ"};
             DefaultTableModel model=new DefaultTableModel(tieuDe,0);
