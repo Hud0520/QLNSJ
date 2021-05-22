@@ -10,7 +10,7 @@ package Util;
  * @author Xiaomi
  */
 public class NhanVien {
-    private String maNV, hotenNV, ngaySinh, gioiTinh, trinhDo, sdt, diaChi, maKhoa;
+    protected String maNV, hotenNV, ngaySinh, gioiTinh, danToc, trinhDo, ngayVaoLam, sdt, diaChi;
 
     public String getMaNV() {
         return maNV;
@@ -44,12 +44,28 @@ public class NhanVien {
         this.gioiTinh = gioiTinh;
     }
 
+    public String getDanToc() {
+        return danToc;
+    }
+
+    public void setDanToc(String danToc) {
+        this.danToc = danToc;
+    }
+
     public String getTrinhDo() {
         return trinhDo;
     }
 
     public void setTrinhDo(String trinhDo) {
         this.trinhDo = trinhDo;
+    }
+
+    public String getNgayVaoLam() {
+        return ngayVaoLam;
+    }
+
+    public void setNgayVaoLam(String ngayVaoLam) {
+        this.ngayVaoLam = ngayVaoLam;
     }
 
     public String getSdt() {
@@ -66,14 +82,6 @@ public class NhanVien {
 
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
-    }
-
-    public String getMaKhoa() {
-        return maKhoa;
-    }
-
-    public void setMaKhoa(String maKhoa) {
-        this.maKhoa = maKhoa;
     }
     
 }

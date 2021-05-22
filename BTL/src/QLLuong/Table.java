@@ -5,6 +5,7 @@
  */
 package QLLuong;
 
+import Util.Luong;
 import java.util.Date;
 import java.util.LinkedList;
 import javax.swing.table.AbstractTableModel;
@@ -17,14 +18,14 @@ public class Table extends AbstractTableModel{
     String [] name={
                 "TT", "Họ tên", "Ngày sinh", "Đơn vị", "Trình độ", "Chức danh", "Bậc", "Hệ số lương", "Thời điểm"
             };
-    Class [] classes = {Integer.class,String.class,Date.class,String.class,String.class,String.class,Integer.class,Float.class,Date.class};
+    Class [] classes = {Integer.class,String.class,String.class,String.class,String.class,String.class,Integer.class,Float.class,String.class};
     
-    LinkedList<LuongNhanvien> list = new LinkedList<>();
+    LinkedList<Luong> list = new LinkedList<>();
 
     public Table() {
     }
     
-    public Table(LinkedList<LuongNhanvien> list){
+    public Table(LinkedList<Luong> list){
         this.list = list;
     }
     
@@ -45,13 +46,13 @@ public class Table extends AbstractTableModel{
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         switch(columnIndex){
             case 0: return rowIndex;
-            case 1: return list.get(rowIndex).getHoTen();
+            case 1: return list.get(rowIndex).getHotenNV();
             case 2: return list.get(rowIndex).getNgaySinh();
-            case 3: return list.get(rowIndex).getDonVi();
+            case 3: return null;
             case 4: return list.get(rowIndex).getTrinhDo();
             case 5: return list.get(rowIndex).getChucDanh();
             case 6: return list.get(rowIndex).getBac();
-            case 7: return list.get(rowIndex).getHsLuong();
+            case 7: return list.get(rowIndex).getHeSoLuong();
             case 8: return list.get(rowIndex).getThoiDiem();
             default:return null;
         }
