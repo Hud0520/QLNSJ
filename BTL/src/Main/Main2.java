@@ -140,8 +140,6 @@ public class Main2 extends javax.swing.JFrame {
                 .addGap(11, 11, 11))
         );
 
-        getAccessibleContext().setAccessibleName("Quản lý nhân sự");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
