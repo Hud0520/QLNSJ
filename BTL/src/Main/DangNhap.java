@@ -211,6 +211,9 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
+        dangnhap();
+    }//GEN-LAST:event_btnDangNhapActionPerformed
+    private void dangnhap(){
         boolean passlog= false;
         ConnectDB db= new ConnectDB();
         HashMap<String,String> listacc= new HashMap<>();
@@ -224,10 +227,9 @@ public class DangNhap extends javax.swing.JFrame {
         }
         String us = txtTenDangNhap.getText().trim();
         String ps = txtMatKhau.getText().trim();
-        for(Map.Entry<String,String> e : listacc.entrySet()){
-            if(e.getKey().equalsIgnoreCase(us) && e.getValue().equalsIgnoreCase(ps)){
+        if(listacc.containsKey(us)){
+            if(listacc.get(us).equalsIgnoreCase(ps)){
                 passlog= true;
-                break;
             }
         }
         if(passlog){
@@ -236,10 +238,10 @@ public class DangNhap extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Đăng nhập thất bại","Thông báo",JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_btnDangNhapActionPerformed
-
+    }
     private void btnDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangNhapMouseClicked
         // TODO add your handling code here:
+        dangnhap();
     }//GEN-LAST:event_btnDangNhapMouseClicked
 
     /**

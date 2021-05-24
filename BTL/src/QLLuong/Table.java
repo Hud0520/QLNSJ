@@ -16,9 +16,9 @@ import javax.swing.table.AbstractTableModel;
  */
 public class Table extends AbstractTableModel{
     String [] name={
-                "TT", "Họ tên", "Ngày sinh", "Đơn vị", "Trình độ", "Chức danh", "Bậc", "Hệ số lương", "Thời điểm"
+                "TT", "Họ tên", "Ngày sinh", "Đơn vị", "Trình độ", "Chức danh", "Bậc", "Hệ số lương", "Thời điểm", "Thực lĩnh"
             };
-    Class [] classes = {Integer.class,String.class,String.class,String.class,String.class,String.class,Integer.class,Float.class,String.class};
+    Class [] classes = {Integer.class,String.class,String.class,String.class,String.class,String.class,Integer.class,Float.class,String.class, Float.class};
     
     LinkedList<Luong> list = new LinkedList<>();
 
@@ -54,6 +54,7 @@ public class Table extends AbstractTableModel{
             case 6: return list.get(rowIndex).getBac();
             case 7: return list.get(rowIndex).getHeSoLuong();
             case 8: return list.get(rowIndex).getThoiDiem();
+            case 9: return list.get(rowIndex).tinhLuong();
             default:return null;
         }
     }

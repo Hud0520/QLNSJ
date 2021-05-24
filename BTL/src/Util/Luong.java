@@ -13,6 +13,7 @@ import java.util.Date;
  * @author Hud
  */
 public class Luong extends  NhanVien{
+    public static int LUONG_CO_BAN = 1600000;
     private String chucDanh;
     private float heSoLuong;
     private int bac;
@@ -59,4 +60,7 @@ public class Luong extends  NhanVien{
         this.thoiDiem = thoiDiem;
     }
      
+    public float tinhLuong(){
+        return LUONG_CO_BAN*heSoLuong;
+    }
 }

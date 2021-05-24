@@ -7,7 +7,6 @@ package QLNhanVien;
 
 import Util.ConnectDB;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,7 +35,22 @@ public class Connect {
         kq=st.executeQuery("select * from NHANVIEN");
         return kq;
     }
-        public ResultSet findNV(String maNV) throws SQLException
+    public ResultSet findByName(String tenNV) throws SQLException
+    {
+        ResultSet kq=null;
+        Statement st=con.createStatement();
+        kq=st.executeQuery("select * from NHANVIEN WHERE TenNhanVien LIKE N'%"+tenNV+"%'");
+        return kq;
+    }
+    public ResultSet sort(String jtable) throws SQLException
+    {
+        ResultSet kq=null;
+        Statement st=con.createStatement();
+        kq=st.executeQuery("select * from NHANVIEN ORDER BY MaKhoa ");
+        return kq;
+    }
+    
+        public ResultSet findNVBySid(String maNV) throws SQLException
     {
         ResultSet kq=null;
         Statement st=con.createStatement();
@@ -96,6 +110,12 @@ public class Connect {
         t= getStatement().executeUpdate("delete from NHANVIEN where MaNhanVien='"+maNhanVien+"'");
         return t;
     }
+    public int removeLuong(String maNhanVien)throws Exception
+    {
+        int t;
+        t= getStatement().executeUpdate("delete from LUONG where MaLuong='"+maNhanVien+"'");
+        return t;
+    }
     public int updateNV(String maNV, String tenNV, String ngaySinh, String gioiTinh, String trinhDo, String sdt, String diaChi, String maKhoa) throws Exception
     {
         int t;
@@ -113,6 +133,17 @@ public class Connect {
 	}
 	return true;
     }
+    public boolean checkName(String tenNV) throws SQLException, ClassNotFoundException {
+	// Kiểm tra nv có trong database hay chưa
+        ResultSet kq=null;
+        Statement st=con.createStatement();
+        kq=st.executeQuery("select * from NHANVIEN WHERE TenNhanVien LIKE N'%"+tenNV+"%'");
+	// Trả về kết quả
+	if (!kq.next()) {
+	    return false;
+	}
+	return true;
+    }
     public boolean checkKhoa(String maKhoa) throws SQLException, ClassNotFoundException {
 	// Kiểm tra makhoa có trong database hay chưa
         ResultSet kq=null;
@@ -120,10 +151,8 @@ public class Connect {
         kq=st.executeQuery("select * from KHOA WHERE MaKhoa ='"+maKhoa+"'");
 	// Trả về kết quả
 	if (!kq.next()) {
-	    con.close();
 	    return false;
 	}
-	con.close();
 	return true;
     }
     public boolean checkSdt(String sdt) throws SQLException, ClassNotFoundException {

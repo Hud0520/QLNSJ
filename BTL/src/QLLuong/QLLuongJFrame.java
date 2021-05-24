@@ -149,6 +149,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jButton2);
 
+        jButton7.setIcon(new ImageIcon("src/Util/Icon/remove.png"));
         jButton7.setText("Xóa");
         jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -157,6 +158,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jButton7);
 
+        jButton1.setIcon(new ImageIcon("src/Util/Icon/sort.png"));
         jButton1.setText("Sắp xếp");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -188,6 +190,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jButton3);
 
+        jButton4.setIcon(new ImageIcon("src/Util/Icon/file.png"));
         jButton4.setText("In danh sách");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -196,6 +199,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jButton4);
 
+        jButton8.setIcon(new ImageIcon("src/Util/Icon/exit1.png"));
         jButton8.setText("Thoát");
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

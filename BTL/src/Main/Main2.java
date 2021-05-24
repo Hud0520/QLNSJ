@@ -6,7 +6,7 @@ import Util.MyTree;
 import Util.MyTree.MyCellRender;
 import QLKhoa.QLKhoa;
 import Util.TrangChu1;
-import com.khoa_lop_lich.LichDay;
+import QLGiangDay.LichDay;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -58,7 +58,6 @@ public class Main2 extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -141,6 +140,8 @@ public class Main2 extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(11, 11, 11))
         );
+
+        getAccessibleContext().setAccessibleName("Quản lý nhân sự");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
