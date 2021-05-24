@@ -1,25 +1,15 @@
 package QLKhoa;
 
 import Util.Khoa;
-import Main.Main2;
-import QLLuong.Table;
 import Util.ConnectDB;
-import Util.TrangChu1;
-import java.awt.Color;
 import java.awt.HeadlessException;
-import java.awt.event.ItemListener;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 public class QLKhoa extends javax.swing.JFrame {
     Connection con = new ConnectDB().getCn();
