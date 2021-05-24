@@ -133,7 +133,7 @@ public class TrangChu1 extends javax.swing.JPanel {
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Icon/Task list.png"))); // NOI18N
-        jButton5.setText("Quản lý giảng dạy");
+        jButton5.setText("Phân công giảng dạy");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);

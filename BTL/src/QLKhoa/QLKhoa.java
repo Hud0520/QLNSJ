@@ -635,7 +635,7 @@ public class QLKhoa extends javax.swing.JFrame {
             tblDanhSachKhoa.getColumnModel().getColumn(0).setPreferredWidth(20);
             rs.close();
             pstm.close();
-            con.close();
+            
         } catch (Exception e) {
             Logger.getLogger(QLKhoa.class.getName()).log(Level.SEVERE, null, e);
         }

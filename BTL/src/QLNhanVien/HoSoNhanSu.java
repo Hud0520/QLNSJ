@@ -108,8 +108,8 @@ public class HoSoNhanSu extends javax.swing.JFrame {
         NVbtnThem = new javax.swing.JButton();
         NVbtnSua = new javax.swing.JButton();
         NVbtnXoa = new javax.swing.JButton();
-        NVbtnQuayLai = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        NVbtnQuayLai = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
 
@@ -346,17 +346,6 @@ public class HoSoNhanSu extends javax.swing.JFrame {
         });
         jPanel3.add(NVbtnXoa);
 
-        NVbtnQuayLai.setBackground(new java.awt.Color(255, 255, 255));
-        NVbtnQuayLai.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        NVbtnQuayLai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Icon/Exit.png"))); // NOI18N
-        NVbtnQuayLai.setText("Quay Lại");
-        NVbtnQuayLai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NVbtnQuayLaiActionPerformed(evt);
-            }
-        });
-        jPanel3.add(NVbtnQuayLai);
-
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Icon/Refresh.png"))); // NOI18N
@@ -367,6 +356,17 @@ public class HoSoNhanSu extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton1);
+
+        NVbtnQuayLai.setBackground(new java.awt.Color(255, 255, 255));
+        NVbtnQuayLai.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        NVbtnQuayLai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Util/Icon/Exit.png"))); // NOI18N
+        NVbtnQuayLai.setText("Quay Lại");
+        NVbtnQuayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NVbtnQuayLaiActionPerformed(evt);
+            }
+        });
+        jPanel3.add(NVbtnQuayLai);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
