@@ -70,7 +70,7 @@ public class Main2 extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Quan lý nhân sự");
+        setTitle("Quản lý nhân sự");
         setIconImage(new ImageIcon("src/Util/Icon/logo-haui-1.png").getImage());
 
         jTree1.setPreferredSize(new java.awt.Dimension(0, 0));
