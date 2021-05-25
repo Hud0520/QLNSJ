@@ -70,7 +70,7 @@ public class Main2 extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Quan lý nhân sự");
+        setTitle("Quản lý nhân sự");
         setIconImage(new ImageIcon("src/Util/Icon/logo-haui-1.png").getImage());
 
         jTree1.setPreferredSize(new java.awt.Dimension(0, 0));
@@ -139,8 +139,6 @@ public class Main2 extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(11, 11, 11))
         );
-
-        getAccessibleContext().setAccessibleName("Quản lý nhân sự");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -53,6 +53,7 @@ public class QLKhoa extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         pnlThongTinKhoa.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin khoa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
@@ -643,6 +644,10 @@ public class QLKhoa extends javax.swing.JFrame {
             tblDanhSachKhoa.getColumnModel().getColumn(0).setPreferredWidth(20);
             rs.close();
             pstm.close();
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 2b017ff809437e02b14a7a95545800f0a5ee6aca
         } catch (Exception e) {
             Logger.getLogger(QLKhoa.class.getName()).log(Level.SEVERE, null, e);
         }
