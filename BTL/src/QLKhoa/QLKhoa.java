@@ -53,7 +53,6 @@ public class QLKhoa extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
 
         pnlThongTinKhoa.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin khoa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
@@ -593,6 +592,7 @@ public class QLKhoa extends javax.swing.JFrame {
 
     public boolean checkTenKhoa(String tenKhoa) {
         try {
+            
             String sql = "select tenkhoa from KHOA";
             PreparedStatement pstm = con.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
@@ -610,6 +610,7 @@ public class QLKhoa extends javax.swing.JFrame {
 
     public boolean checkMaKhoa(String ma) {
         try {
+            
             String sql = "select makhoa from KHOA";
             PreparedStatement pstm = con.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
@@ -631,6 +632,7 @@ public class QLKhoa extends javax.swing.JFrame {
             DefaultTableModel tblModel = new DefaultTableModel(title, 0);
             tblDanhSachKhoa.setModel(tblModel);
             //tblDanhSachKhoa.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer());
+            
             String sql = "select * from KHOA";
             PreparedStatement pstm = con.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
@@ -644,10 +646,7 @@ public class QLKhoa extends javax.swing.JFrame {
             tblDanhSachKhoa.getColumnModel().getColumn(0).setPreferredWidth(20);
             rs.close();
             pstm.close();
-<<<<<<< HEAD
-=======
-            
->>>>>>> 2b017ff809437e02b14a7a95545800f0a5ee6aca
+            con.close();
         } catch (Exception e) {
             Logger.getLogger(QLKhoa.class.getName()).log(Level.SEVERE, null, e);
         }

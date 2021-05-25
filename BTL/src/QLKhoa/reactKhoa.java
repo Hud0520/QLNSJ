@@ -11,7 +11,7 @@ public class reactKhoa {
         
         String sql = "insert into Khoa(MaKhoa, TenKhoa, TruongKhoa, NgayThanhLap, DiaChi, DienThoai, Email, Website) values(?,?,?,?,?,?,?,?)";
         try (
-                
+                 
                 PreparedStatement pstm = con.prepareStatement(sql);
             ){
             pstm.setString(1, khoa.getMaKhoa());
@@ -75,7 +75,7 @@ public class reactKhoa {
     public boolean sua(Khoa khoa) throws Exception{
         String sql = "update Khoa set TenKhoa=?, TruongKhoa=?, NgayThanhLap=?, DiaChi=?, DienThoai=?, Email=?, Website=? where MaKhoa=?"; 
         try (
-                 
+                  
                 PreparedStatement pstm = con.prepareStatement(sql);
             ){
             pstm.setString(8, khoa.getMaKhoa());
@@ -92,7 +92,8 @@ public class reactKhoa {
     }
     public boolean xoa(Khoa khoa) throws Exception{
         String sql = "delete from KHOA where MaKhoa=?"; 
-        try ( 
+        try (
+                 
                 PreparedStatement pstm = con.prepareStatement(sql);
             ){
             pstm.setString(1, khoa.getMaKhoa());          

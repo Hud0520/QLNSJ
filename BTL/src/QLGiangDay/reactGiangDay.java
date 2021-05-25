@@ -11,7 +11,7 @@ public class reactGiangDay {
 
         String sql = "insert into LICH(NgayHoc,MaMon,MaNhanVien,Tiet) values(?,?,?,?)";
         try (
-                   PreparedStatement pstm = con.prepareStatement(sql);) {
+                  PreparedStatement pstm = con.prepareStatement(sql);) {
             pstm.setString(1, lich.getNgay());
             pstm.setString(2, lich.getMaMon());
             pstm.setString(3, lich.getMaNhanVien());
@@ -65,7 +65,7 @@ public class reactGiangDay {
     public String timMaHocPhan(String tenHocPhan) throws Exception {
         String sql = "select * from HocPhan where TenMon=?";
         try (
-                PreparedStatement pstm = con.prepareStatement(sql);) {
+                   PreparedStatement pstm = con.prepareStatement(sql);) {
             pstm.setString(1, tenHocPhan);
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
@@ -78,7 +78,7 @@ public class reactGiangDay {
     public String timDiaDiemHocPhan(String maHocPhan) throws Exception {
         String sql = "select * from HocPhan where maMon=?";
         try (
-                 PreparedStatement pstm = con.prepareStatement(sql);) {
+                  PreparedStatement pstm = con.prepareStatement(sql);) {
             pstm.setString(1, maHocPhan);
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
@@ -93,7 +93,7 @@ public class reactGiangDay {
 
         String sql = "update luong set sotiet = sotiet +? where MaNhanVien=?";
         try (
-            PreparedStatement pstm = con.prepareStatement(sql);) {
+                  PreparedStatement pstm = con.prepareStatement(sql);) {
             pstm.setInt(1, soTiet);   
             pstm.setString(2, nhanVien); 
             return pstm.executeUpdate() > 0;
