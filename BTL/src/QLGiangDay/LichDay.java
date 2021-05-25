@@ -5,7 +5,6 @@
  */
 package QLGiangDay;
 
-import Util.Lich;
 import QLKhoa.QLKhoa;
 import Util.ConnectDB;
 import java.awt.HeadlessException;
@@ -17,13 +16,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class LichDay extends javax.swing.JFrame {
-
+    Connection con = new ConnectDB().getCn();
     public LichDay() {
         initComponents();
         loadToTableHocPhan();
@@ -67,14 +67,8 @@ public class LichDay extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Môn học");
 
-        txtTenMon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Mã nhân sự");
-
-        txtMaNhanVien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        txtTenNhanVien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Họ tên");
@@ -169,25 +163,19 @@ public class LichDay extends javax.swing.JFrame {
         lblMaMon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblMaMon.setText("Mã Môn");
 
-        txtMaMon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Ngày học");
 
         cbxNgay.setEditable(true);
-        cbxNgay.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cbxNgay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", " " }));
 
         cbxThang.setEditable(true);
-        cbxThang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cbxThang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 
         cbxNam.setEditable(true);
-        cbxNam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cbxNam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2000", "2021", "2022", "2023" }));
 
         cbxTiet.setEditable(true);
-        cbxTiet.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cbxTiet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1,2", "1,2,3", "1,2,3,4", "1,2,3,4,5", "1,2,3,4,5,6", "10,11", "10,11,12", "11,12", "13,14", "13,14,15", "13,14,15,16", "15,16", "2,3", "3,4", "4,5", "4,5,6", "7,8", "7,8,9", "7,8,9,10", "7,8,9,10,11", "7,8,9,10,11,12", "8,9", "9,10", " ", " ", " ", " ", " " }));
         cbxTiet.setEnabled(false);
 
@@ -205,91 +193,96 @@ public class LichDay extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(lblSoTiet)
-                            .addComponent(lblMaMon, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTenMon, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMaMon, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cbxNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbxThang, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbxNam, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMaNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56))
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(854, 854, 854))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(62, 62, 62)
+                                        .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(48, 48, 48)
+                                        .addComponent(btnInfile, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(54, 54, 54)
+                                        .addComponent(btnRefesh, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1063, 1063, 1063))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMaMon)
+                                    .addComponent(jLabel3)
+                                    .addComponent(lblSoTiet))
+                                .addGap(35, 35, 35)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbxTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTenMon, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMaMon, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(295, 295, 295)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(cbxNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cbxThang, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cbxNam, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMaNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(162, 162, 162)
-                                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62)
-                                .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(btnInfile, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54)
-                                .addComponent(btnRefesh, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 878, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(218, 218, 218)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(238, 238, 238)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addGap(261, 261, 261)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblMaMon)
+                                    .addComponent(txtMaMon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(txtTenMon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cbxTiet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblSoTiet))
+                                .addGap(6, 6, 6))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel5)
                                     .addComponent(txtMaNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6)
-                                    .addComponent(txtTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblMaMon, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtMaMon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtTenMon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbxNgay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbxTiet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblSoTiet)))
-                        .addGap(35, 35, 35)
+                                    .addComponent(cbxNgay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbxThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbxNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnThem)
                             .addComponent(btnTim)
@@ -306,31 +299,16 @@ public class LichDay extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 880, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 942, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRefeshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefeshActionPerformed
-        Refesh();
-        loadToTableLich();
-    }//GEN-LAST:event_btnRefeshActionPerformed
-
-    private void btnInfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfileActionPerformed
-        exportExcel(tblLich);
-    }//GEN-LAST:event_btnInfileActionPerformed
-
-    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
-        timLichTheoMaMon(txtMaMon.getText().toString());
-    }//GEN-LAST:event_btnTimActionPerformed
 
     private void tblHocPhanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHocPhanMouseClicked
         int row = tblHocPhan.getSelectedRow();
@@ -338,6 +316,7 @@ public class LichDay extends javax.swing.JFrame {
         txtTenMon.setText(tblHocPhan.getValueAt(row, 1).toString());
         cbxTiet.setEditable(true);
         cbxTiet.setSelectedItem(tblHocPhan.getValueAt(row, 3));
+
     }//GEN-LAST:event_tblHocPhanMouseClicked
 
     private void tblLichMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLichMouseClicked
@@ -365,6 +344,14 @@ public class LichDay extends javax.swing.JFrame {
         themLich();
     }//GEN-LAST:event_btnThemActionPerformed
 
+    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
+        timLichTheoMaMon(txtMaMon.getText().toString());
+    }//GEN-LAST:event_btnTimActionPerformed
+
+    private void btnInfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfileActionPerformed
+        exportExcel(tblLich);
+    }//GEN-LAST:event_btnInfileActionPerformed
+
     public void exportExcel(JTable table) {
         JFileChooser chooser = new JFileChooser();
         int i = chooser.showSaveDialog(chooser);
@@ -375,6 +362,7 @@ public class LichDay extends javax.swing.JFrame {
                 BufferedWriter bwrite = new BufferedWriter(out);
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
                 // ten Cot
+
                 for (int j = 0; j < table.getColumnCount(); j++) {
                     bwrite.write(model.getColumnName(j) + "\t");
                 }
@@ -393,6 +381,12 @@ public class LichDay extends javax.swing.JFrame {
             }
         }
     }
+
+    private void btnRefeshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefeshActionPerformed
+        Refesh();
+        loadToTableLich();
+
+    }//GEN-LAST:event_btnRefeshActionPerformed
     private boolean checkNull() throws HeadlessException {
         if (txtMaMon.getText().trim().equals("")) {
             JOptionPane.showConfirmDialog(this, "Mã học phần không được để trống", "Warning!", JOptionPane.CLOSED_OPTION);
@@ -411,6 +405,14 @@ public class LichDay extends javax.swing.JFrame {
         if (checkNull()) {
             return;
         }
+        if (!Pattern.matches("[Mm][Oo][Mn]\\d{2,}", txtMaMon.getText())) {
+            JOptionPane.showMessageDialog(this, " Mã môn không hợp lệ ^.^");
+            return;
+        };
+        if (!Pattern.matches("[Nn][Vv]\\d{2,}", txtMaNhanVien.getText())) {
+            JOptionPane.showMessageDialog(this, " Mã nhân viên không hợp lệ ^.^");
+            return;
+        };
         try {
             Lich lich = new Lich();
             lich.setMaMon(txtMaMon.getText().trim());
@@ -479,7 +481,11 @@ public class LichDay extends javax.swing.JFrame {
                 tblModel.addRow(row);
             }
             if (tblModel.getRowCount() == 0) {
-                timLichTheoTenMon(txtTenMon.getText().toString().trim());
+                if (!txtTenMon.getText().equals("")) {
+                    timLichTheoTenMon(txtTenMon.getText().toString());
+                } else {
+                    timLichTheoMaNhanVien(txtMaNhanVien.getText().toString());
+                }
             }
             tblModel.fireTableDataChanged();
             tblLich.setAutoCreateRowSorter(true);
@@ -493,18 +499,17 @@ public class LichDay extends javax.swing.JFrame {
 
     }
 
-    private void timLichTheoTenMon(String tenHocPhan) {
+    private void timLichTheoTenMon(String tenCanTim) {
         try {
             String[] title = {"Tên giảng viên", "Tên học phần", "Ngày học", "Tiết học", "Địa điểm",};
             DefaultTableModel tblModel = new DefaultTableModel(title, 0);
             tblLich.setModel(tblModel);
             Connection con = new ConnectDB().getCn();
-            String sql = "select NgayHoc,TenMon,TenNhanVien,hocphan.TietHoc,HOCPHAN.DiaDiem from lich inner join hocphan on lich.MaMon = hocphan.MaMon inner join nhanvien on lich.manhanvien = nhanvien.manhanvien where hocphan.tenmon LIKE '%" + tenHocPhan + "%' ";
+            String sql = "select NgayHoc,TenMon,TenNhanVien,hocphan.TietHoc,HOCPHAN.DiaDiem from lich inner join hocphan on lich.MaMon = hocphan.MaMon inner join nhanvien on lich.manhanvien = nhanvien.manhanvien where hocphan.tenmon LIKE '%" + tenCanTim + "%%'";
 
             PreparedStatement pstm = con.prepareStatement(sql);
 
             ResultSet rs = pstm.executeQuery();
-
             tblModel.setRowCount(0);
             while (rs.next()) {
                 String[] row = new String[]{rs.getString("tennhanvien").trim(), rs.getString("tenMon").trim(), rs.getString("ngayhoc").trim(), rs.getString("tiethoc"), rs.getString("diadiem")};
@@ -543,8 +548,12 @@ public class LichDay extends javax.swing.JFrame {
                 String[] row = new String[]{rs.getString("tennhanvien").trim(), rs.getString("tenMon").trim(), rs.getString("ngayhoc").trim(), rs.getString("tiethoc"), rs.getString("diadiem")};
                 tblModel.addRow(row);
             }
-            if (tblModel.getRowCount() == 0) {
-                timLichTheoTenNhanVien(txtTenNhanVien.getText().toString());
+            if (tblModel.getRowCount() == 0) {                
+                if (txtTenNhanVien.getText().equals("")) {
+                    timLichTheoNgay(cbxNam.getSelectedItem().toString() + "-" + cbxThang.getSelectedItem().toString() + "-" + cbxNgay.getSelectedItem().toString());
+                } else {
+                    timLichTheoTenNhanVien(txtTenNhanVien.getText().toString());
+                }
             }
             tblModel.fireTableDataChanged();
             tblLich.setAutoCreateRowSorter(true);
@@ -558,13 +567,52 @@ public class LichDay extends javax.swing.JFrame {
 
     }
 
-    private void timLichTheoTenNhanVien(String tenNhanvien) {
+    private void timLichTheoTenNhanVien(String tenNVCanTim) {
+        try {
+
+            String[] title = {"Tên giảng viên", "Tên học phần", "Ngày học", "Tiết học", "Địa điểm",};
+            DefaultTableModel tblModel = new DefaultTableModel(title, 0);
+            tblLich.setModel(tblModel);
+            Connection con = new ConnectDB().getCn();
+
+            String sql = "select NgayHoc,TenMon,TenNhanVien,hocphan.TietHoc,HOCPHAN.DiaDiem from lich inner join hocphan on lich.MaMon = hocphan.MaMon inner join nhanvien on lich.manhanvien = nhanvien.manhanvien where nhanvien.tennhanvien LIKE '%" + tenNVCanTim + "%%' ";
+
+            PreparedStatement pstm = con.prepareStatement(sql);
+
+            ResultSet rs = pstm.executeQuery();
+
+            tblModel.setRowCount(0);
+
+            while (rs.next()) {
+                String[] row = new String[]{rs.getString("tennhanvien").trim(), rs.getString("tenMon").trim(), rs.getString("ngayhoc").trim(), rs.getString("tiethoc"), rs.getString("diadiem")};
+                tblModel.addRow(row);
+            }
+            if (tblModel.getRowCount() == 0) {
+                if (!txtTenNhanVien.getText().equals("")) {
+                    timLichTheoNgay(cbxNam.getSelectedItem().toString() + "-" + cbxThang.getSelectedItem().toString() + "-" + cbxNgay.getSelectedItem().toString());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Không tìm thấy lịch tương ứng");
+                }
+            }
+            tblModel.fireTableDataChanged();
+            tblLich.setAutoCreateRowSorter(true);
+            //tblHocPhan.getColumnModel().getColumn(0).setPreferredWidth(20);
+            rs.close();
+            pstm.close();
+            con.close();
+        } catch (Exception e) {
+            Logger.getLogger(QLKhoa.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }
+
+    private void timLichTheoNgay(String timNgay) {
         try {
             String[] title = {"Tên giảng viên", "Tên học phần", "Ngày học", "Tiết học", "Địa điểm",};
             DefaultTableModel tblModel = new DefaultTableModel(title, 0);
             tblLich.setModel(tblModel);
             Connection con = new ConnectDB().getCn();
-            String sql = "select NgayHoc,TenMon,TenNhanVien,hocphan.TietHoc,HOCPHAN.DiaDiem from lich inner join hocphan on lich.MaMon = hocphan.MaMon inner join nhanvien on lich.manhanvien = nhanvien.manhanvien where hocphan.tenmon LIKE '%" + tenNhanvien + "%' ";
+            String sql = "select NgayHoc,TenMon,TenNhanVien,hocphan.TietHoc,HOCPHAN.DiaDiem from lich inner join hocphan on lich.MaMon = hocphan.MaMon inner join nhanvien on lich.manhanvien = nhanvien.manhanvien where lich.ngayhoc LIKE '%" + timNgay + "%%' ";
 
             PreparedStatement pstm = con.prepareStatement(sql);
 
@@ -606,13 +654,13 @@ public class LichDay extends javax.swing.JFrame {
             String[] title = {"Mã học phần", "Tên học phần", "Thứ", "Tiết học", "Ngày bắt đầu", "Ngày kết thúc", "Địa điểm"};
             DefaultTableModel tblModel = new DefaultTableModel(title, 0);
             tblHocPhan.setModel(tblModel);
-            Connection con = new ConnectDB().getCn();
+            
             String sql = "select * from HOCPHAN";
             PreparedStatement pstm = con.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             tblModel.setRowCount(0);
             while (rs.next()) {
-                String[] row = new String[]{rs.getString("MaMon").trim(), rs.getString("TenMon").trim(), rs.getString("NgayHoc"), rs.getString("TietHoc"), rs.getString("NgayBatDau"), rs.getString("NgayKetThuc"), rs.getString("DiaDiem")};
+                String[] row = new String[]{rs.getString("MaMon").trim(), rs.getString("TenMon").trim(), rs.getString("Thu"), rs.getString("TietHoc"), rs.getString("NgayBatDau"), rs.getString("NgayKetThuc"), rs.getString("DiaDiem")};
                 tblModel.addRow(row);
             }
             tblModel.fireTableDataChanged();
@@ -631,8 +679,8 @@ public class LichDay extends javax.swing.JFrame {
             String[] title = {"Tên giảng viên", "Tên học phần", "Ngày học", "Tiết học", "Địa điểm",};
             DefaultTableModel tblModel = new DefaultTableModel(title, 0);
             tblLich.setModel(tblModel);
-            Connection con = new ConnectDB().getCn();
-            String sql = "select lich.NgayHoc,TenMon,TenNhanVien,hocphan.TietHoc,HOCPHAN.DiaDiem from lich inner join hocphan on lich.MaMon = hocphan.MaMon \n"
+            
+            String sql = "select NgayHoc,TenMon,TenNhanVien,hocphan.TietHoc,HOCPHAN.DiaDiem from lich inner join hocphan on lich.MaMon = hocphan.MaMon \n"
                     + "inner join nhanvien on lich.manhanvien = nhanvien.manhanvien";
             PreparedStatement pstm = con.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();

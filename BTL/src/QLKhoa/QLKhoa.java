@@ -1,6 +1,5 @@
 package QLKhoa;
 
-import Util.Khoa;
 import Util.ConnectDB;
 import java.awt.HeadlessException;
 import java.sql.*;
@@ -8,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -327,15 +327,16 @@ public class QLKhoa extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(pnlThongTinKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(55, 55, 55)
-                            .addComponent(pblChucNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pblChucNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,6 +393,15 @@ public class QLKhoa extends javax.swing.JFrame {
         if (checkNull()) {
             return;
         }
+        if (!Pattern.matches("[K][H]\\d{2,}", txtMaKhoa.getText())) {
+            JOptionPane.showMessageDialog(this, " Mã khoa không hợp lệ ^.^");
+            return;
+        }
+        else if (!Pattern.matches("\\w{1,}[@].{1,}", txtEmail.getText())) {
+            JOptionPane.showMessageDialog(this, "Email không hợp lệ ^.^");
+            return;
+        }
+        
         try {
             Khoa khoa = new Khoa();
             khoa.setMaKhoa(txtMaKhoa.getText().trim());
@@ -582,7 +592,6 @@ public class QLKhoa extends javax.swing.JFrame {
 
     public boolean checkTenKhoa(String tenKhoa) {
         try {
-            
             String sql = "select tenkhoa from KHOA";
             PreparedStatement pstm = con.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
@@ -634,7 +643,6 @@ public class QLKhoa extends javax.swing.JFrame {
             tblDanhSachKhoa.getColumnModel().getColumn(0).setPreferredWidth(20);
             rs.close();
             pstm.close();
-            con.close();
         } catch (Exception e) {
             Logger.getLogger(QLKhoa.class.getName()).log(Level.SEVERE, null, e);
         }
