@@ -6,7 +6,7 @@ import Util.MyTree;
 import Util.MyTree.MyCellRender;
 import QLKhoa.QLKhoa;
 import Util.TrangChu1;
-import com.khoa_lop_lich.LichDay;
+import QLGiangDay.LichDay;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -58,7 +58,6 @@ public class Main2 extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -71,7 +70,7 @@ public class Main2 extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Quan lý nhân sự");
+        setTitle("Quản lý nhân sự");
         setIconImage(new ImageIcon("src/Util/Icon/logo-haui-1.png").getImage());
 
         jTree1.setPreferredSize(new java.awt.Dimension(0, 0));
@@ -130,8 +129,7 @@ public class Main2 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 844, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +171,9 @@ public class Main2 extends javax.swing.JFrame {
                 case 3 : 
                     jPanel5.removeAll();
                     jPanel5.repaint();
-                    jPanel5.add(new QLLuongJFrame().getComponent(0));
+                    QLLuongJFrame luong = new QLLuongJFrame();
+                    luong.setR(jPanel5,jTree1);
+                    jPanel5.add(luong.getComponent(0));
                     jPanel5.revalidate();
                     break;
                 case 4 : 

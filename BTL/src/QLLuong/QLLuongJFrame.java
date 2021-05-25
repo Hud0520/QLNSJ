@@ -6,6 +6,7 @@
 package QLLuong;
 
 import Util.Luong;
+import Util.TrangChu1;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.io.File;
@@ -20,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JTree;
 
 /**
  *
@@ -29,6 +31,9 @@ public class QLLuongJFrame extends javax.swing.JFrame {
     private LinkedList<Luong> listL = new LinkedList<>();
     private int selectedRow = -1;
     private MConnect db= new MConnect();
+    JPanel r;
+    JTree t;
+
     /**
      * Creates new form NewJFrame
      */
@@ -36,6 +41,10 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         initComponents();
         listL= db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
         jTable1.setModel(new Table(listL));
+    }
+    public  void setR(JPanel rot, JTree t){
+        this.r = rot;
+        this.t = t;
     }
 
     /**
@@ -81,8 +90,35 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh Sách Nhân Viên"));
         jPanel2.setName(""); // NOI18N
 
+        jScrollPane1.setToolTipText("");
+        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -107,21 +143,16 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jScrollPane1)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel3.setLayout(new java.awt.GridLayout(2, 4));
 
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton6.setIcon(new ImageIcon("src/Util/ICon/Add.png"));
         jButton6.setText("Thêm");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,6 +162,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jButton6);
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setIcon(new ImageIcon("src/Util/Icon/Edit.png"));
         jButton2.setText("Chỉnh sửa");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -140,6 +172,8 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jButton2);
 
+        jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton7.setIcon(new ImageIcon("src/Util/Icon/remove.png"));
         jButton7.setText("Xóa");
         jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -148,6 +182,8 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jButton7);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setIcon(new ImageIcon("src/Util/Icon/sort.png"));
         jButton1.setText("Sắp xếp");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -161,6 +197,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jButton1);
 
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton5.setIcon(new ImageIcon("src/Util/Icon/Refresh.png"));
         jButton5.setText("Làm mới");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -170,6 +207,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jButton5);
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton3.setIcon(new ImageIcon("src/Util/Icon/Search.png"));
         jButton3.setText("Tìm kiếm ");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +217,8 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jButton3);
 
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton4.setIcon(new ImageIcon("src/Util/Icon/file.png"));
         jButton4.setText("In danh sách");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -187,6 +227,8 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jButton4);
 
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton8.setIcon(new ImageIcon("src/Util/Icon/exit1.png"));
         jButton8.setText("Thoát");
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -293,7 +335,8 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                 if (selectedRow != -1) {
                     Edit sua = new Edit(listL.get(selectedRow), jTable1, listL, "edit");
                     sua.setVisible(rootPaneCheckingEnabled);
-                    if(sua.isUpdateClick())selectedRow = -1;
+                    selectedRow=-1;
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Nhân viên không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -301,7 +344,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         }else{
             Edit sua = new Edit(listL.get(selectedRow), jTable1, listL, "edit");
             sua.setVisible(rootPaneCheckingEnabled);
-            if(sua.isUpdateClick())selectedRow = -1;
+            selectedRow=-1;
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -486,10 +529,12 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
         // TODO add your handling code here:
-        int n = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát chương trình", "Questions", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (n == 0) {
-            System.exit(0);
-        }
+        r.removeAll();
+        r.repaint();
+        TrangChu1 tc= new TrangChu1();
+        tc.setR(r, t);
+        r.add(tc.getComponent(0));
+        r.revalidate();
     }//GEN-LAST:event_jButton8MouseClicked
 
     /**

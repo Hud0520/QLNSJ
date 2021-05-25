@@ -33,7 +33,7 @@ public class MConnect{
                 a.setBac(Integer.parseInt(r.getString(6) == null ? "0" : r.getString(6)));
                 a.setHotenNV(r.getString(8));
                 a.setNgaySinh(r.getString(9));
-                //MaKhoa
+                a.setMaKhoa(r.getString(14));
                 a.setTrinhDo(r.getString(11));
                 l.add(a);
             }

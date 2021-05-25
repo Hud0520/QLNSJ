@@ -2,7 +2,10 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -23,18 +26,21 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanel7" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="pnlThongTinKhoa" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="pblChucNang" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jPanel1" min="-2" pref="962" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="pnlThongTinKhoa" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="pblChucNang" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
+              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
           </Group>
-          <Component id="jPanel1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -68,35 +74,44 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="lblMaKhoa" alignment="2" max="32767" attributes="0"/>
-                      <Component id="ltlTenKhoa" alignment="2" max="32767" attributes="0"/>
-                      <Component id="ltlTruongKhoa" alignment="2" max="32767" attributes="0"/>
-                      <Component id="lblNgayThanhLap" alignment="2" pref="147" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtTenKhoa" min="-2" pref="138" max="-2" attributes="0"/>
-                      <Component id="txtMaKhoa" min="-2" pref="138" max="-2" attributes="0"/>
-                      <Component id="txtTruongKhoa" min="-2" pref="138" max="-2" attributes="0"/>
-                      <Component id="txtNgayThanhLap" min="-2" pref="138" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="ltlTenKhoa" min="-2" pref="105" max="-2" attributes="0"/>
+                              <Component id="lblMaKhoa" min="-2" pref="64" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblNgayThanhLap" min="-2" max="-2" attributes="0"/>
+                              <Component id="ltlTruongKhoa" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="lblDiaChi" alignment="2" max="32767" attributes="0"/>
-                      <Component id="lblDienThoai" alignment="2" pref="118" max="32767" attributes="0"/>
-                      <Component id="lblEmail" alignment="2" max="32767" attributes="0"/>
-                      <Component id="lblWebsite" alignment="2" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtTenKhoa" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="txtMaKhoa" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="txtTruongKhoa" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="txtNgayThanhLap" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtDienThoai" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtWebsite" alignment="0" max="32767" attributes="0"/>
-                      <Component id="cbxDiaChi" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
+                      <Component id="lblDiaChi" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="lblEmail" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lblDienThoai" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lblWebsite" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtWebsite" min="-2" pref="180" max="-2" attributes="0"/>
+                      <Component id="txtEmail" min="-2" pref="180" max="-2" attributes="0"/>
+                      <Component id="txtDienThoai" min="-2" pref="180" max="-2" attributes="0"/>
+                      <Component id="cbxDiaChi" min="-2" pref="180" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -109,16 +124,21 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblMaKhoa" alignment="3" max="32767" attributes="0"/>
                               <Component id="txtMaKhoa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDiaChi" alignment="3" max="32767" attributes="0"/>
+                              <Component id="cbxDiaChi" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="ltlTenKhoa" alignment="3" max="32767" attributes="0"/>
                               <Component id="txtTenKhoa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDienThoai" alignment="3" max="32767" attributes="0"/>
+                              <Component id="txtDienThoai" alignment="3" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="ltlTruongKhoa" alignment="3" max="32767" attributes="0"/>
                               <Component id="txtTruongKhoa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblEmail" alignment="3" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -127,25 +147,12 @@
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblDiaChi" alignment="3" max="32767" attributes="0"/>
-                              <Component id="cbxDiaChi" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblDienThoai" alignment="3" max="32767" attributes="0"/>
-                              <Component id="txtDienThoai" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblEmail" alignment="3" max="32767" attributes="0"/>
-                              <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                          <Component id="txtEmail" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblWebsite" alignment="3" max="32767" attributes="0"/>
-                              <Component id="txtWebsite" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtWebsite" alignment="3" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -270,12 +277,29 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbxDiaChi">
           <Properties>
+            <Property name="editable" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
+              <StringArray count="14">
+                <StringItem index="0" value="T&#x1ea7;ng 4, Nh&#xe0; A1"/>
+                <StringItem index="1" value="T&#x1ea7;ng 7, Nh&#xe0; A1"/>
+                <StringItem index="2" value="T&#x1ea7;ng 10, Nh&#xe0; A1"/>
+                <StringItem index="3" value="T&#x1ea7;ng 11, Nh&#xe0; A1"/>
+                <StringItem index="4" value="T&#x1ea7;ng 12, Nh&#xe0; A1"/>
+                <StringItem index="5" value="T&#x1ea7;ng 13, Nh&#xe0; A1"/>
+                <StringItem index="6" value="T&#x1ea7;ng 14, Nh&#xe0; A1"/>
+                <StringItem index="7" value="T&#x1ea7;ng 15, Nh&#xe0; A1"/>
+                <StringItem index="8" value="T&#x1ea7;ng 16, Nh&#xe0; A1"/>
+                <StringItem index="9" value="T&#x1ea7;ng 1, Nh&#xe0; A10"/>
+                <StringItem index="10" value="T&#x1ea7;ng 2, Nh&#xe0; A10"/>
+                <StringItem index="11" value="T&#x1ea7;ng 3, Nh&#xe0; A10"/>
+                <StringItem index="12" value="T&#x1ea7;ng 1 nh&#xe0; A10"/>
+                <StringItem index="13" value="T&#x1ea7;ng 10 nh&#xe0; A1"/>
+              </StringArray>
             </Property>
           </Properties>
           <AuxValues>
@@ -304,18 +328,13 @@
                               <Component id="btnThem" pref="87" max="32767" attributes="0"/>
                               <Component id="btnXoa" alignment="1" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="btnTimKiem" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="btnSua" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="btnTimKiem" max="32767" attributes="0"/>
+                              <Component id="btnSua" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="btnThoat" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnRefesh" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -335,14 +354,14 @@
                       <Component id="btnTimKiem" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnThoat" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRefesh" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnThoat">
+        <Component class="javax.swing.JButton" name="btnRefesh">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -350,8 +369,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
+            <Property name="text" type="java.lang.String" value="Refesh"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRefeshActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnThem">
           <Properties>
@@ -363,6 +385,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnXoa">
           <Properties>
@@ -374,6 +399,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Xo&#xe1;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnTimKiem">
           <Properties>
@@ -385,6 +413,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimKiemActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSua">
           <Properties>
@@ -396,6 +427,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -415,7 +449,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="911" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -438,10 +472,11 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tbDanhSachKhoa">
+            <Component class="javax.swing.JTable" name="tblDanhSachKhoa">
               <Properties>
+                <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="8" rowCount="4">
+                  <Table columnCount="8" rowCount="0">
                     <Column editable="false" title="M&#xe3; Khoa" type="java.lang.Object"/>
                     <Column editable="false" title="T&#xea;n Khoa" type="java.lang.Object"/>
                     <Column editable="false" title="Tr&#x1b0;&#x1edf;ng Khoa" type="java.lang.Object"/>
@@ -503,6 +538,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cellKhoaClick"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

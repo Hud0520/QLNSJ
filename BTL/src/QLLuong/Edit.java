@@ -9,7 +9,6 @@ import Util.Luong;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -23,13 +22,7 @@ public class Edit extends javax.swing.JFrame {
     private JTable tb;
     private LinkedList<Luong> listL = new LinkedList<>();
     private String type;
-    private boolean updateClick= false;
 
-    public boolean isUpdateClick() {
-        return updateClick;
-    }
-
-    
     private MConnect cn = new MConnect();
     public Luong getNv() {
         return nv;
@@ -51,7 +44,7 @@ public class Edit extends javax.swing.JFrame {
         jLabel6.setText(nv.getMaNV());
         jLabel16.setText(nv.getHotenNV());
         jLabel7.setText(nv.getNgaySinh());
-        jLabel8.setText("");
+        jLabel8.setText(nv.getMaKhoa());
         jLabel9.setText(nv.getTrinhDo());
         jTextField1.setText(nv.getChucDanh());
         jTextField2.setText(""+nv.getBac());
@@ -338,7 +331,9 @@ public class Edit extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        tb.setModel(new Table(listL));
         this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -347,7 +342,6 @@ public class Edit extends javax.swing.JFrame {
             int index = 0;
             if (type.equalsIgnoreCase("edit")){
                 index = listL.indexOf(nv);
-                listL.remove(index);
             }
             String tmp=jTextField1.getText();
             if(tmp.trim().equalsIgnoreCase("")){
@@ -355,29 +349,42 @@ public class Edit extends javax.swing.JFrame {
             }else{
                 nv.setChucDanh(tmp);
             }
-            tmp=jTextField2.getText();
-            if(Integer.parseInt(tmp)<0){
-                throw new Exception("Bậc không được âm");
-            }else{
-                nv.setBac(Integer.parseInt(tmp));
+            tmp = jTextField2.getText().trim();
+            if (tmp.equalsIgnoreCase("")) {
+                throw new Exception("Bậc không dược để trống");
+            } else {
+                if(!tmp.matches("\\d+?")){
+                    throw new Exception("Bậc phải là số nguyên dương");
+                }else{
+                    nv.setBac(Integer.parseInt(tmp));
+                }
             }
-            tmp=jTextField3.getText();
-            if(Float.parseFloat(tmp)<0){
-                throw new Exception("Hệ số lương không được âm");
-            }else{
-                nv.setHeSoLuong(Float.parseFloat(tmp));
+            
+            tmp=jTextField3.getText().trim();
+            if (tmp.equalsIgnoreCase("")) {
+                throw new Exception("Hệ số không dược để trống");
+            } else {
+                if(!tmp.matches("\\d+(\\.\\d+)?")){
+                    throw new Exception("Hệ số lương phải là số thực dương");
+                }else{
+                    nv.setHeSoLuong(Float.parseFloat(tmp));
+                }
             }
-            tmp=jTextField4.getText();
+            tmp=jTextField4.getText().trim();
             if(!tmp.matches("(\\d{4})/(\\d{2})/(\\d{2})")){
                 throw new Exception("Không đúng cấu trúc ngày tháng yyyy/mm/dd");
             }else{
                 nv.setThoiDiem( tmp);
             }
-            tmp=jTextField5.getText();
-            if (Integer.parseInt(tmp) < 0) {
-                throw new Exception("Số tiết không được âm");
+            tmp=jTextField5.getText().trim();
+            if (tmp.equalsIgnoreCase("")) {
+                throw new Exception("Số tiết không dược để trống");
             } else {
-                nv.setSotiet(Integer.parseInt(tmp));
+                if(!tmp.matches("\\d+?")){
+                    throw new Exception("Số tiết phải là số nguyên dương");
+                }else{
+                    nv.setSotiet(Integer.parseInt(tmp));
+                }
             }
             
             switch(type){
@@ -389,12 +396,12 @@ public class Edit extends javax.swing.JFrame {
                     break;
                 case "edit":
                     cn.update(nv);
+                    listL.remove(index);
                     listL.add(index,nv);
                     tb.setModel(new Table(listL));
                     this.dispose();
                     break;
             }
-            updateClick= true;
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(),"Chú ý",JOptionPane.WARNING_MESSAGE);
