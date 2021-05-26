@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -28,9 +29,10 @@ import javax.swing.JTree;
  * @author Hud
  */
 public class QLLuongJFrame extends javax.swing.JFrame {
+
     private LinkedList<Luong> listL = new LinkedList<>();
     private int selectedRow = -1;
-    private MConnect db= new MConnect();
+    private MConnect db = new MConnect();
     JPanel r;
     JTree t;
 
@@ -39,10 +41,11 @@ public class QLLuongJFrame extends javax.swing.JFrame {
      */
     public QLLuongJFrame() {
         initComponents();
-        listL= db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
+        listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
         jTable1.setModel(new Table(listL));
     }
-    public  void setR(JPanel rot, JTree t){
+
+    public void setR(JPanel rot, JTree t) {
         this.r = rot;
         this.t = t;
     }
@@ -270,48 +273,50 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-          
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         JPanel f = new JPanel(new GridLayout(4, 1));
         f.add(new Label("Tìm kiếm theo:"));
-        JComboBox<String> option = new JComboBox<String>(new String[]{"Họ tên","Bậc","Trình độ"});
+        JComboBox<String> option = new JComboBox<String>(new String[]{"Họ tên", "Bậc", "Trình độ"});
         f.add(option);
         f.add(new JLabel("Nhập từ khóa :"));
         JTextField tukhoa = new JTextField(30);
         f.add(tukhoa);
-        int result= JOptionPane.showConfirmDialog(null, f, "Tìm kiếm",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        
-        if(result == 0){
-            switch(option.getSelectedIndex()){
+        int result = JOptionPane.showConfirmDialog(null, f, "Tìm kiếm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (result == 0) {
+            LinkedList<Luong> cloneL = new LinkedList<>(listL);
+            Iterator<Luong> i = cloneL.iterator();
+            switch (option.getSelectedIndex()) {
                 case 0:
-                    String tk =tukhoa.getText().toLowerCase();
-                    for(Luong i : listL){
-                        if(!i.getHotenNV().toLowerCase().contains(tk)){
-                            listL.remove(i);
+                    String tk = tukhoa.getText().trim().toLowerCase();
+                    while (i.hasNext()){
+                        if (!i.next().getHotenNV().toLowerCase().contains(tk)) {
+                            i.remove();
                         }
                     }
-                    jTable1.setModel(new Table(listL));
+                    jTable1.setModel(new Table(cloneL));
                     break;
                 case 1:
                     int tk1 = Integer.parseInt(tukhoa.getText());
-                    for(Luong i : listL){
-                        if(Integer.compare(i.getBac(), tk1)!=0){
-                            listL.remove(i);
+                    while(i.hasNext()) {
+                        if (Integer.compare(i.next().getBac(), tk1) != 0) {
+                            i.remove();
                         }
                     }
-                    jTable1.setModel(new Table(listL));
+                    jTable1.setModel(new Table(cloneL));
                     break;
                 case 2:
-                    String tk3 =tukhoa.getText().toLowerCase();
-                    for(Luong i : listL){
-                        if(!i.getTrinhDo().equalsIgnoreCase(tk3)){
-                            listL.remove(i);
+                    String tk3 = tukhoa.getText().trim().toLowerCase();
+                    while(i.hasNext()) {
+                        if (!i.next().getTrinhDo().equalsIgnoreCase(tk3)) {
+                            i.remove();
                         }
                     }
-                    jTable1.setModel(new Table(listL));
+                    jTable1.setModel(new Table(cloneL));
                     break;
             }
         }
@@ -319,49 +324,53 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if(selectedRow == -1){
+        if (selectedRow == -1) {
             String manv = (String) JOptionPane.showInputDialog(this, "Nhập mã nhân viên:", "Chỉnh sửa",
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                null,
-                "");
-            if (manv != null && !manv.isEmpty()) {
-                for (Luong i : listL) {
-                    if (i.getMaNV().trim().equalsIgnoreCase(manv.trim())) {
-                        selectedRow = listL.indexOf(i);
-                        break;
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    "");
+            if (manv != null) {
+                if (!manv.isEmpty()) {
+                    for (Luong i : listL) {
+                        if (i.getMaNV().trim().equalsIgnoreCase(manv.trim())) {
+                            selectedRow = listL.indexOf(i);
+                            break;
+                        }
                     }
-                }
-                if (selectedRow != -1) {
-                    Edit sua = new Edit(listL.get(selectedRow), jTable1, listL, "edit");
-                    sua.setVisible(rootPaneCheckingEnabled);
-                    selectedRow=-1;
-                    
+                    if (selectedRow != -1) {
+                        Edit sua = new Edit(listL.get(selectedRow), jTable1, listL, "edit");
+                        sua.setVisible(rootPaneCheckingEnabled);
+                        selectedRow = -1;
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Nhân viên không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Nhân viên không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Bạn chưa nhập mã nhân viên", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
-        }else{
+        } else {
             Edit sua = new Edit(listL.get(selectedRow), jTable1, listL, "edit");
             sua.setVisible(rootPaneCheckingEnabled);
-            selectedRow=-1;
+            selectedRow = -1;
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
-    private String line(){
-        String line="+";
-        for(int i= 1; i<149; i++){
-            if(i== 11 || i == 37 || i== 53 || i== 69 || i== 85 || i== 101 || i == 117 || i == 133){
-                line+="+";
-            }else{
-                line+="-";
+    private String line() {
+        String line = "+";
+        for (int i = 1; i < 149; i++) {
+            if (i == 11 || i == 37 || i == 53 || i == 69 || i == 85 || i == 101 || i == 117 || i == 133) {
+                line += "+";
+            } else {
+                line += "-";
             }
         }
-        return line+"+\n";
+        return line + "+\n";
     }
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-        File name = new File ("Danh sach.txt");
+        File name = new File("Danh sach.txt");
         JFileChooser chooser = new JFileChooser(System.getProperty("user.home") + "/Desktop");
         chooser.setSelectedFile(name);
         int select = chooser.showSaveDialog(chooser);
@@ -369,10 +378,10 @@ public class QLLuongJFrame extends javax.swing.JFrame {
             File file = chooser.getSelectedFile();
             try {
                 FileWriter fw = new FileWriter(file);
-                Table tb= new Table();
+                Table tb = new Table();
                 fw.write("Danh sách mức lương của nhân viên.\n\n\n");
                 fw.write(line());
-                
+
                 //In tiêu đề
                 fw.write(String.format("|%-10s", tb.getColumnName(0)));
                 fw.write(String.format("|%-25s", tb.getColumnName(1)));
@@ -385,21 +394,21 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                 fw.write(String.format("|%-15s|\n", tb.getColumnName(8)));
                 fw.write(line());
                 //In dữ liệu
-                for(int i=0 ;i <listL.size() ;i++){
-                    fw.write(String.format("|%-10s",i ));
+                for (int i = 0; i < listL.size(); i++) {
+                    fw.write(String.format("|%-10s", i));
                     fw.write(String.format("|%-25s", listL.get(i).getHotenNV()));
                     fw.write(String.format("|%-15s", listL.get(i).getNgaySinh()));
-                    fw.write(String.format("|%-15s", ""));
+                    fw.write(String.format("|%-15s", listL.get(i).getMaKhoa()));
                     fw.write(String.format("|%-15s", listL.get(i).getTrinhDo()));
                     fw.write(String.format("|%-15s", listL.get(i).getChucDanh()));
-                    fw.write(String.format("|%-15s", ""+listL.get(i).getBac()));
-                    fw.write(String.format("|%-15s", ""+listL.get(i).getHeSoLuong()));
+                    fw.write(String.format("|%-15s", "" + listL.get(i).getBac()));
+                    fw.write(String.format("|%-15s", "" + listL.get(i).getHeSoLuong()));
                     fw.write(String.format("|%-15s|\n", listL.get(i).getThoiDiem()));
                 }
                 fw.write(line());
                 fw.flush();
                 fw.close();
-                JOptionPane.showMessageDialog(null, "Lưu file thành công!");
+                JOptionPane.showMessageDialog(null, "File đươc lưu " + file.getPath() + "!");
             } catch (Exception e2) {
                 JOptionPane.showMessageDialog(null, "Lỗi khi lưu file!");
                 e2.printStackTrace();
@@ -419,30 +428,34 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                 "");
 
         //Thêm
-        if (manv != null && !manv.isEmpty()) {
-            int index = -1;
-            for (Luong i : listNew) {
-                if (i.getMaNV().trim().equalsIgnoreCase(manv.trim())) {
-                    index = listNew.indexOf(i);
-                    break;
-                }
-            }
-            if (index != -1) {
-                Edit them = new Edit(listNew.get(index), jTable1, listL, "new");
-                them.setVisible(true);
-                listNew.remove(index);
-            } else {
-                for (Luong i : listL) {
+        if (manv != null) {
+            if (!manv.isEmpty()) {
+                int index = -1;
+                for (Luong i : listNew) {
                     if (i.getMaNV().trim().equalsIgnoreCase(manv.trim())) {
-                        index = listL.indexOf(i);
+                        index = listNew.indexOf(i);
                         break;
                     }
                 }
                 if (index != -1) {
-                    JOptionPane.showMessageDialog(null, "Bản ghi đã tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    Edit them = new Edit(listNew.get(index), jTable1, listL, "new");
+                    them.setVisible(true);
+                    listNew.remove(index);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Không tồn tại nhân viên " + manv, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    for (Luong i : listL) {
+                        if (i.getMaNV().trim().equalsIgnoreCase(manv.trim())) {
+                            index = listL.indexOf(i);
+                            break;
+                        }
+                    }
+                    if (index != -1) {
+                        JOptionPane.showMessageDialog(null, "Bản ghi đã tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Không tồn tại nhân viên " + manv, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Bạn chưa nhập mã nhân viên", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton6MouseClicked
@@ -460,27 +473,30 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                     null,
                     null,
                     "");
-            if (manv != null && !manv.isEmpty()) {
-                for (Luong i : listL) {
-                    if (i.getMaNV().trim().equalsIgnoreCase(manv.trim())) {
-                        selectedRow = listL.indexOf(i);
-                        break;
+            if (manv != null) {
+                if (!manv.isEmpty()) {
+                    for (Luong i : listL) {
+                        if (i.getMaNV().trim().equalsIgnoreCase(manv.trim())) {
+                            selectedRow = listL.indexOf(i);
+                            break;
+                        }
                     }
-                }
-                if (selectedRow != -1) {
-                    int rs = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa lương nhân viên " + listL.get(selectedRow).getMaNV(), "Cẩn thận", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                    if (rs == 0) {
-                        db.delete(listL.get(selectedRow));
-                        listL.remove(selectedRow);
-                        jTable1.setModel(new Table(listL));
-                        selectedRow = -1;
+                    if (selectedRow != -1) {
+                        int rs = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa lương nhân viên " + listL.get(selectedRow).getMaNV(), "Cẩn thận", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                        if (rs == 0) {
+                            db.delete(listL.get(selectedRow));
+                            listL.remove(selectedRow);
+                            jTable1.setModel(new Table(listL));
+                            selectedRow = -1;
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Bản ghi không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Bản ghi không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Bạn chưa nhập mã nhân viên", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 }
-                
             }
-        }else{
+        } else {
             int rs = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa lương nhân viên " + listL.get(selectedRow).getMaNV(), "Cẩn thận", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if (rs == 0) {
                 db.delete(listL.get(selectedRow));
@@ -495,19 +511,19 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         JPanel f = new JPanel(new GridLayout(2, 1));
         f.add(new Label("Sắp xếp theo :"));
-        JComboBox<String>option = new JComboBox<String>(new String[]{"Họ tên","Bậc"});
+        JComboBox<String> option = new JComboBox<String>(new String[]{"Họ tên", "Bậc"});
         f.add(option);
-        int result= JOptionPane.showConfirmDialog(null, f, "Sắp xếp",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        
-        if(result == 0){
-            switch(option.getSelectedIndex()){
-                case 0 :
+        int result = JOptionPane.showConfirmDialog(null, f, "Sắp xếp", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (result == 0) {
+            switch (option.getSelectedIndex()) {
+                case 0:
                     Comparator<Luong> c = (o1, o2) -> {
                         return o1.getHotenNV().compareToIgnoreCase(o2.getHotenNV()); //To change body of generated lambdas, choose Tools | Templates.
                     };
                     Collections.sort(listL, c);
                     break;
-                case 1 :
+                case 1:
                     Comparator<Luong> c1 = (o1, o2) -> {
                         return Integer.compare(o1.getBac(), o2.getBac()); //To change body of generated lambdas, choose Tools | Templates.
                     };
@@ -520,10 +536,9 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
-        listL= db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
+        listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
         String sql = "Select * from LUONG right join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien"
                 + " where NHANVIEN.MaNhanVien not in (Select MaNhanVien from LUONG)";
-        LinkedList<Luong> listNew = db.getALLData(sql);
         jTable1.setModel(new Table(listL));
     }//GEN-LAST:event_jButton5MouseClicked
 
@@ -531,7 +546,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         r.removeAll();
         r.repaint();
-        TrangChu1 tc= new TrangChu1();
+        TrangChu1 tc = new TrangChu1();
         tc.setR(r, t);
         r.add(tc.getComponent(0));
         r.revalidate();

@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.HashMap;
 import java.sql.*;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -234,7 +233,8 @@ public class DangNhap extends javax.swing.JFrame {
             new Main2().setVisible(true);
             this.dispose();
         }else{
-            JOptionPane.showMessageDialog(null, "Đăng nhập thất bại","Thông báo",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không đúng","Thông báo",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
     /**

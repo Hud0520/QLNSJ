@@ -43,26 +43,6 @@ public class MConnect{
         return l;
     }
     
-    public LinkedList<Luong> getTableLuong(){
-        LinkedList<Luong> l = new LinkedList<>();
-        ResultSet r = db.getData("Select * from LUONG");
-        try {
-            while(r.next()){
-                Luong a = new Luong();
-                a.setMaNV(r.getString(1));
-                a.setChucDanh(r.getString(2));
-                a.setHeSoLuong(Float.parseFloat(r.getString(3)));
-                a.setThoiDiem(r.getString(4));
-                a.setSotiet(Integer.parseInt(r.getString(5)));
-                a.setBac(Integer.parseInt(r.getString(6)));
-                l.add(a);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(MConnect.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return l;
-    }
-    
     public void add(Luong nv){
         String sql = "insert into LUONG values(?,?,?,?,?,?)";
         try {

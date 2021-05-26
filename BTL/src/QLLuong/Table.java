@@ -6,9 +6,9 @@
 package QLLuong;
 
 import Util.Luong;
-import java.util.Date;
 import java.util.LinkedList;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -63,6 +63,8 @@ public class Table extends AbstractTableModel{
     public String getColumnName(int column) {
         return name[column]; //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
     
     

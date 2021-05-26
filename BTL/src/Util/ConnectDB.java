@@ -16,7 +16,7 @@ public class ConnectDB {
     ResultSet rs = null;
     Connection cn =null;
     
-    String connectionUrl = "jdbc:sqlserver://PCS-1952:1433;database=btlJava";
+    String connectionUrl = "jdbc:sqlserver://localhost:1433;database=btlJava";
     String user="sa";
     String password="123456";  
 
