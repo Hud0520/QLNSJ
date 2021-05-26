@@ -229,7 +229,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton8.setIcon(new ImageIcon("src/Util/Icon/exit1.png"));
-        jButton8.setText("Thoát");
+        jButton8.setText("Quay lại");
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton8MouseClicked(evt);

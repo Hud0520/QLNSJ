@@ -309,7 +309,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new ImageIcon(&quot;src/Util/Icon/exit1.png&quot;)" type="code"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
+            <Property name="text" type="java.lang.String" value="Quay l&#x1ea1;i"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton8MouseClicked"/>
