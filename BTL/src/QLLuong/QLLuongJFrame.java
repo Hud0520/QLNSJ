@@ -288,8 +288,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(null, f, "Tìm kiếm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (result == 0) {
-            LinkedList<Luong> cloneL = new LinkedList<>(listL);
-            Iterator<Luong> i = cloneL.iterator();
+            Iterator<Luong> i = listL.iterator();
             switch (option.getSelectedIndex()) {
                 case 0:
                     String tk = tukhoa.getText().trim().toLowerCase();
@@ -298,7 +297,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                             i.remove();
                         }
                     }
-                    jTable1.setModel(new Table(cloneL));
+                    jTable1.setModel(new Table(listL));
                     break;
                 case 1:
                     int tk1 = Integer.parseInt(tukhoa.getText());
@@ -307,7 +306,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                             i.remove();
                         }
                     }
-                    jTable1.setModel(new Table(cloneL));
+                    jTable1.setModel(new Table(listL));
                     break;
                 case 2:
                     String tk3 = tukhoa.getText().trim().toLowerCase();
@@ -316,7 +315,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                             i.remove();
                         }
                     }
-                    jTable1.setModel(new Table(cloneL));
+                    jTable1.setModel(new Table(listL));
                     break;
             }
         }
@@ -324,6 +323,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
         if (selectedRow == -1) {
             String manv = (String) JOptionPane.showInputDialog(this, "Nhập mã nhân viên:", "Chỉnh sửa",
                     JOptionPane.PLAIN_MESSAGE,
@@ -344,7 +344,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                         selectedRow = -1;
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "Nhân viên không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Bản ghi không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Bạn chưa nhập mã nhân viên", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -381,7 +381,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                 Table tb = new Table();
                 fw.write("Danh sách mức lương của nhân viên.\n\n\n");
                 fw.write(line());
-
+                
                 //In tiêu đề
                 fw.write(String.format("|%-10s", tb.getColumnName(0)));
                 fw.write(String.format("|%-25s", tb.getColumnName(1)));
@@ -418,6 +418,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
+        listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
         String sql = "Select * from LUONG right join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien"
                 + " where NHANVIEN.MaNhanVien not in (Select MaNhanVien from LUONG)";
         LinkedList<Luong> listNew = db.getALLData(sql);
@@ -467,6 +468,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
+        listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
         if (selectedRow == -1) {
             String manv = (String) JOptionPane.showInputDialog(this, "Nhập mã nhân viên:", "Xóa",
                     JOptionPane.PLAIN_MESSAGE,
@@ -537,8 +539,6 @@ public class QLLuongJFrame extends javax.swing.JFrame {
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
         listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
-        String sql = "Select * from LUONG right join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien"
-                + " where NHANVIEN.MaNhanVien not in (Select MaNhanVien from LUONG)";
         jTable1.setModel(new Table(listL));
     }//GEN-LAST:event_jButton5MouseClicked
 

@@ -64,7 +64,9 @@ public class Table extends AbstractTableModel{
         return name[column]; //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    public LinkedList<Luong> getList(){
+        return list;
+    }
     
     
     
