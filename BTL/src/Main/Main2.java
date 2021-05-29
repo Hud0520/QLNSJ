@@ -34,19 +34,11 @@ public class Main2 extends javax.swing.JFrame {
         MyTree tree = new MyTree();
         jTree1.setModel(tree.getTreeModel());
         jTree1.setCellRenderer(tree.new MyCellRender());
-        jTree1.setSelectionRow(treeSelected);
         TrangChu1 f = new TrangChu1();
+        jTree1.setSelectionRow(treeSelected);
         jPanel5.add(f);
         f.setR(jPanel5,jTree1);
         this.setVisible(true);
-    }
-    
-    public JPanel getjPanel5() {
-        return jPanel5;
-    }
-
-    public void setjPanel5(JPanel jPanel5) {
-        this.jPanel5 = jPanel5;
     }
 
     /**

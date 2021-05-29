@@ -6,17 +6,11 @@
 package Util;
 
 import java.awt.Component;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
-import javax.swing.text.StyleConstants;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeCellRenderer;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreeNode;
 
 /**
  *
@@ -45,11 +39,7 @@ public class MyTree extends JTree{
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
             MyTreeNode myTreeNode = (MyTreeNode) node.getUserObject();
             setText(myTreeNode.getName());
-            if(node.isLeaf()){
-                setIcon(new ImageIcon(myTreeNode.getIcon()));
-            }else{
-                setIcon(new ImageIcon(myTreeNode.getIcon()));
-            }
+            setIcon(new ImageIcon(myTreeNode.getIcon()));
             return c;
         }
         
