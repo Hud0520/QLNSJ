@@ -323,8 +323,9 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
+        
         if (selectedRow == -1) {
+            listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
             String manv = (String) JOptionPane.showInputDialog(this, "Nhập mã nhân viên:", "Chỉnh sửa",
                     JOptionPane.PLAIN_MESSAGE,
                     null,
@@ -468,8 +469,9 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
-        listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
+        
         if (selectedRow == -1) {
+            listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
             String manv = (String) JOptionPane.showInputDialog(this, "Nhập mã nhân viên:", "Xóa",
                     JOptionPane.PLAIN_MESSAGE,
                     null,
