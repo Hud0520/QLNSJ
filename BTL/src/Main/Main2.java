@@ -31,7 +31,7 @@ public class Main2 extends javax.swing.JFrame {
     public Main2() {
         initComponents();
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-        rootPane = getRootPane();
+        
         MyTree tree = new MyTree();
         jTree1.setModel(tree.getTreeModel());
         jTree1.setCellRenderer(tree.new MyCellRender());
@@ -239,10 +239,7 @@ public class Main2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Main2 frame = new Main2();
-                frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-                frame.revalidate();
-                frame.setVisible(true);
+                new DangNhap().setVisible(true);
 
             }
         });
