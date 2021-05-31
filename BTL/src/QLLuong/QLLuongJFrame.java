@@ -424,10 +424,10 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                 + " where NHANVIEN.MaNhanVien not in (Select MaNhanVien from LUONG)";
         LinkedList<Luong> listNew = db.getALLData(sql);
         String manv = (String) JOptionPane.showInputDialog(this, "Nhập mã nhân viên:", "Thêm mới",
-                JOptionPane.PLAIN_MESSAGE,
+               JOptionPane.PLAIN_MESSAGE,
                 null,
                 null,
-                "");
+                ""); 
 
         //Thêm
         if (manv != null) {
@@ -542,6 +542,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
         jTable1.setModel(new Table(listL));
+        selectedRow= -1;
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked

@@ -16,7 +16,7 @@ import javax.swing.tree.DefaultTreeModel;
  *
  * @author Hud
  */
-public class MyTree extends JTree{
+public class MyTree{
     public DefaultTreeModel getTreeModel(){
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(new MyTreeNode("Trang Chủ", "src/Util/Icon/Home.png"));
         DefaultMutableTreeNode qlk = new DefaultMutableTreeNode(new MyTreeNode("Quản lý khoa", "src/Util/Icon/Nhansu.png"));
