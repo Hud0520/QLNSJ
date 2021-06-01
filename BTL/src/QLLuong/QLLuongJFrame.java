@@ -323,8 +323,9 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
+        
         if (selectedRow == -1) {
+            listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
             String manv = (String) JOptionPane.showInputDialog(this, "Nhập mã nhân viên:", "Chỉnh sửa",
                     JOptionPane.PLAIN_MESSAGE,
                     null,
@@ -423,10 +424,10 @@ public class QLLuongJFrame extends javax.swing.JFrame {
                 + " where NHANVIEN.MaNhanVien not in (Select MaNhanVien from LUONG)";
         LinkedList<Luong> listNew = db.getALLData(sql);
         String manv = (String) JOptionPane.showInputDialog(this, "Nhập mã nhân viên:", "Thêm mới",
-                JOptionPane.PLAIN_MESSAGE,
+               JOptionPane.PLAIN_MESSAGE,
                 null,
                 null,
-                "");
+                ""); 
 
         //Thêm
         if (manv != null) {
@@ -468,8 +469,9 @@ public class QLLuongJFrame extends javax.swing.JFrame {
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
-        listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
+        
         if (selectedRow == -1) {
+            listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
             String manv = (String) JOptionPane.showInputDialog(this, "Nhập mã nhân viên:", "Xóa",
                     JOptionPane.PLAIN_MESSAGE,
                     null,
@@ -540,6 +542,7 @@ public class QLLuongJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         listL = db.getALLData("Select * from LUONG inner join NHANVIEN on LUONG.MaNhanVien = NHANVIEN.MaNhanVien");
         jTable1.setModel(new Table(listL));
+        selectedRow= -1;
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked

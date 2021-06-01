@@ -211,7 +211,6 @@ public class DangNhap extends javax.swing.JFrame {
         dangnhap();
     }//GEN-LAST:event_btnDangNhapMouseClicked
     private void dangnhap(){
-        boolean passlog= false;
         ConnectDB db= new ConnectDB();
         HashMap<String,String> listacc= new HashMap<>();
         ResultSet r = db.getData("select * from TAIKHOAN");
@@ -226,15 +225,12 @@ public class DangNhap extends javax.swing.JFrame {
         String ps = new String(txtMatKhau.getPassword());
         if(listacc.containsKey(us)){
             if(listacc.get(us).equalsIgnoreCase(ps)){
-                passlog= true;
-            }
-        }
-        if(passlog){
-            new Main2().setVisible(true);
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không đúng","Thông báo",
+                new Main2().setVisible(true);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không đúng","Thông báo",
                     JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }
     /**

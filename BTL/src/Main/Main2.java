@@ -31,23 +31,14 @@ public class Main2 extends javax.swing.JFrame {
     public Main2() {
         initComponents();
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-        rootPane = getRootPane();
         MyTree tree = new MyTree();
         jTree1.setModel(tree.getTreeModel());
         jTree1.setCellRenderer(tree.new MyCellRender());
-        jTree1.setSelectionRow(treeSelected);
         TrangChu1 f = new TrangChu1();
+        jTree1.setSelectionRow(treeSelected);
         jPanel5.add(f);
         f.setR(jPanel5,jTree1);
         this.setVisible(true);
-    }
-    
-    public JPanel getjPanel5() {
-        return jPanel5;
-    }
-
-    public void setjPanel5(JPanel jPanel5) {
-        this.jPanel5 = jPanel5;
     }
 
     /**
@@ -239,10 +230,7 @@ public class Main2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Main2 frame = new Main2();
-                frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-                frame.revalidate();
-                frame.setVisible(true);
+                new DangNhap().setVisible(true);
 
             }
         });
