@@ -1,4 +1,4 @@
-package QLGiangDay;
+package Util;
 
 import java.util.Objects;
 

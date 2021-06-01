@@ -4,6 +4,7 @@ package QLKhoa;
 import Util.ConnectDB;
 import java.sql.*;
 import java.sql.PreparedStatement;
+import Util.Khoa;
 
 public class reactKhoa {
     Connection con = new ConnectDB().getCn();

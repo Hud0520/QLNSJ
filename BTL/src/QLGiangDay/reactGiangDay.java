@@ -1,6 +1,7 @@
 package QLGiangDay;
 
 import Util.ConnectDB;
+import Util.Lich;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -75,6 +76,18 @@ public class reactGiangDay {
             return null;
         }
     }
+        public String timMaNhanVien(String nngay, String ttiet, String ddiadiem) throws Exception {
+        String sql = "select nhanvien.MaNhanVien,diadiem  from lich inner join hocphan on lich.MaMon=hocphan.MaMon inner join nhanvien on lich.MaNhanVien=nhanvien.MaNhanVien where NgayHoc='"+nngay+"' and tiet='"+ttiet+"' and DiaDiem='"+ddiadiem+"'";
+        try (
+                   PreparedStatement pstm = con.prepareStatement(sql);) {
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                String maMon = rs.getString("MaNhanVien");
+                return maMon;
+            }
+            return null;
+        }
+    }
     public String timDiaDiemHocPhan(String maHocPhan) throws Exception {
         String sql = "select * from HocPhan where maMon=?";
         try (
@@ -86,6 +99,18 @@ public class reactGiangDay {
                 return diaDiem;
             }
             return null;
+        }
+    }
+    public boolean checkMaMon(String maHocPhan) throws Exception {
+        String sql = "select * from HocPhan where maMon=?";
+        try (
+                  PreparedStatement pstm = con.prepareStatement(sql);) {
+            pstm.setString(1, maHocPhan);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+            return false;
         }
     }
     

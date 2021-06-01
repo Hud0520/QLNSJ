@@ -463,6 +463,7 @@ public class HoSoNhanSu extends javax.swing.JFrame {
             else if(!cn.checkKhoa(NVtxtMaKhoa.getText()))JOptionPane.showMessageDialog(this, "Mã khoa không tồn tại","", JOptionPane.ERROR_MESSAGE);
             else{
             cn.addNV(NVtxtMaNhanVien.getText(),NVtxtHoTenNhanVien.getText(),NVtxtNgaySinh.getText(),getGT(),NVtxtTrinhDo.getText(), NVtxtSdt.getText(), NVtxtDiaChi.getText(), NVtxtMaKhoa.getText()) ;
+            xoatrangNV();
             }
             } catch (Exception ex) {
             Logger.getLogger(HoSoNhanSu.class.getName()).log(Level.SEVERE, null, ex);
@@ -473,8 +474,7 @@ public class HoSoNhanSu extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(HoSoNhanSu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        LoadData();
-        xoatrangNV();
+        
     }//GEN-LAST:event_NVbtnThemActionPerformed
     private boolean checksize(){
         if(NVtxtMaNhanVien.getText().isEmpty())
@@ -519,7 +519,10 @@ public class HoSoNhanSu extends javax.swing.JFrame {
         // TODO add your handling code here:
         cn.getConnect();
         try {
-            if(!cn.checkStudent(NVtxtMaNhanVien.getText()))JOptionPane.showMessageDialog(this, "Chưa chọn nhân viên cần xóa","", JOptionPane.ERROR_MESSAGE);
+            if(NVtxtMaNhanVien.getText().isEmpty()){
+                JOptionPane.showConfirmDialog(this, "Chưa chọn mã nhân viên cần xóa","",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(!cn.checkStudent(NVtxtMaNhanVien.getText()))JOptionPane.showMessageDialog(this, "Chưa chọn nhân viên cần xóa","", JOptionPane.ERROR_MESSAGE);
             else{
             cn.removeNV(NVtxtMaNhanVien.getText());
             cn.removeLuong(NVtxtMaNhanVien.getText());
@@ -558,6 +561,7 @@ public class HoSoNhanSu extends javax.swing.JFrame {
             else if(!cn.checkKhoa(NVtxtMaKhoa.getText()))JOptionPane.showMessageDialog(this, "Mã khoa không tồn tại","", JOptionPane.ERROR_MESSAGE);
             else{
             cn.updateNV(NVtxtMaNhanVien.getText(),NVtxtHoTenNhanVien.getText(),NVtxtNgaySinh.getText(),getGT(),NVtxtTrinhDo.getText(), NVtxtSdt.getText(), NVtxtDiaChi.getText(), NVtxtMaKhoa.getText()) ;
+            xoatrangNV();
             }
         } catch (Exception ex) {
             Logger.getLogger(HoSoNhanSu.class.getName()).log(Level.SEVERE, null, ex);
@@ -578,8 +582,7 @@ public class HoSoNhanSu extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(HoSoNhanSu.class.getName()).log(Level.SEVERE, null, ex);
         }    
-        LoadData();
-        xoatrangNV();
+        
     }//GEN-LAST:event_NVbtnSuaActionPerformed
 
     private void NVbtnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NVbtnTimKiemActionPerformed

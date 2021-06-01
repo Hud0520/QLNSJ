@@ -1,9 +1,11 @@
 package QLKhoa;
 
 import Util.ConnectDB;
+import Util.Khoa;
 import java.awt.HeadlessException;
 import java.sql.*;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -97,7 +99,7 @@ public class QLKhoa extends javax.swing.JFrame {
         txtEmail.setToolTipText("");
 
         cbxDiaChi.setEditable(true);
-        cbxDiaChi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tầng 4, Nhà A1", "Tầng 7, Nhà A1", "Tầng 10, Nhà A1", "Tầng 11, Nhà A1", "Tầng 12, Nhà A1", "Tầng 13, Nhà A1", "Tầng 14, Nhà A1", "Tầng 15, Nhà A1", "Tầng 16, Nhà A1", "Tầng 1, Nhà A10", "Tầng 2, Nhà A10", "Tầng 3, Nhà A10", "Tầng 1 nhà A10", "Tầng 10 nhà A1" }));
+        cbxDiaChi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tầng 4, Nhà A1", "Tầng 7, Nhà A1", "Tầng 10, Nhà A1", "Tầng 11, Nhà A1", "Tầng 12, Nhà A1", "Tầng 13, Nhà A1", "Tầng 14, Nhà A1", "Tầng 15, Nhà A1", "Tầng 16, Nhà A1", "Tầng 1, Nhà A10", "Tầng 2, Nhà A10", "Tầng 3, Nhà A10", "Tầng 1, Nhà A10", "Tầng 10, Nhà A1" }));
 
         javax.swing.GroupLayout pnlThongTinKhoaLayout = new javax.swing.GroupLayout(pnlThongTinKhoa);
         pnlThongTinKhoa.setLayout(pnlThongTinKhoaLayout);
@@ -177,6 +179,7 @@ public class QLKhoa extends javax.swing.JFrame {
 
         btnRefesh.setBackground(new java.awt.Color(255, 255, 255));
         btnRefesh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRefesh.setIcon(new javax.swing.ImageIcon("D:\\New folder\\New folder (3)\\QLNSJ-main\\BTL\\src\\Util\\Icon\\Refresh.png")); // NOI18N
         btnRefesh.setText("Refesh");
         btnRefesh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,6 +189,7 @@ public class QLKhoa extends javax.swing.JFrame {
 
         btnThem.setBackground(new java.awt.Color(255, 255, 255));
         btnThem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon("D:\\New folder\\New folder (3)\\QLNSJ-main\\BTL\\src\\Util\\Icon\\Add.png")); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,6 +199,7 @@ public class QLKhoa extends javax.swing.JFrame {
 
         btnXoa.setBackground(new java.awt.Color(255, 255, 255));
         btnXoa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon("D:\\New folder\\New folder (3)\\QLNSJ-main\\BTL\\src\\Util\\Icon\\Delete.png")); // NOI18N
         btnXoa.setText("Xoá");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,6 +209,7 @@ public class QLKhoa extends javax.swing.JFrame {
 
         btnTimKiem.setBackground(new java.awt.Color(255, 255, 255));
         btnTimKiem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnTimKiem.setIcon(new javax.swing.ImageIcon("D:\\New folder\\New folder (3)\\QLNSJ-main\\BTL\\src\\Util\\Icon\\Search.png")); // NOI18N
         btnTimKiem.setText("Tìm kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,6 +219,7 @@ public class QLKhoa extends javax.swing.JFrame {
 
         btnSua.setBackground(new java.awt.Color(255, 255, 255));
         btnSua.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon("D:\\New folder\\New folder (3)\\QLNSJ-main\\BTL\\src\\Util\\Icon\\Edit.png")); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,16 +234,17 @@ public class QLKhoa extends javax.swing.JFrame {
             .addGroup(pblChucNangLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pblChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pblChucNangLayout.createSequentialGroup()
-                        .addGroup(pblChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                            .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(12, 12, 12)
-                        .addGroup(pblChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(btnRefesh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                    .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(pblChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                    .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
+            .addGroup(pblChucNangLayout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addComponent(btnRefesh, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pblChucNangLayout.setVerticalGroup(
             pblChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,7 +343,7 @@ public class QLKhoa extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(pnlThongTinKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pblChucNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(pblChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -389,19 +397,82 @@ public class QLKhoa extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cellKhoaClick
 
+    private boolean checkInput() throws HeadlessException {
+        if (!Pattern.matches("[K][H]\\d{2,}", txtMaKhoa.getText())) {
+            JOptionPane.showMessageDialog(this, " Mã khoa không hợp lệ ^.^");
+            return true;
+        } else if (!Pattern.matches("\\d{4}[-]\\d{2}[-]\\d{2}", txtNgayThanhLap.getText())) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày tháng năm theo định dang yyyy-mm-dd ^.^");
+            return true;
+        } else if (!Pattern.matches("[0]\\d{9}", txtDienThoai.getText())) {
+            JOptionPane.showMessageDialog(this, "Điện thoại không hợp lệ ^.^");
+            return true;
+        } else if (!Pattern.matches("\\w{1,}[@][g][m][a][i][l][.][c][o][m]", txtEmail.getText())) {
+            JOptionPane.showMessageDialog(this, "Email không hợp lệ ^.^");
+            return true;
+        }
+        return false;
+    }
+    private boolean checkNull() throws HeadlessException {
+        if (txtMaKhoa.getText().trim().equals("")) {
+            JOptionPane.showConfirmDialog(this, "Mã khoa không được để trống", "Warning!", JOptionPane.CLOSED_OPTION);
+            return true;
+        }
+        if (txtTenKhoa.getText().trim().equals("")) {
+            JOptionPane.showConfirmDialog(this, "Tên khoa không được để trống", "Warning!", JOptionPane.CLOSED_OPTION);
+            return true;
+        }
+        if (txtTruongKhoa.getText().trim().equals("")) {
+            JOptionPane.showConfirmDialog(this, "Trưởng khoa không được để trống", "Warning!", JOptionPane.CLOSED_OPTION);
+            return true;
+        }
+        if (txtNgayThanhLap.getText().trim().equals("")) {
+            JOptionPane.showConfirmDialog(this, "Ngày thành lập không được để trống", "Warning!", JOptionPane.CLOSED_OPTION);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkTenKhoa(String tenKhoa) {
+        try {
+            
+            String sql = "select tenkhoa from KHOA";
+            PreparedStatement pstm = con.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("TenKhoa").equals(tenKhoa)) {
+                    JOptionPane.showMessageDialog(this, "Tên khoa đã tồn tại!");
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            Logger.getLogger(QLKhoa.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return false;
+    }
+
+    public boolean checkMaKhoa(String ma) {
+        try {
+            
+            String sql = "select makhoa from KHOA";
+            PreparedStatement pstm = con.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("MaKhoa").contains(ma)) {
+                    JOptionPane.showMessageDialog(this, "Mã khoa đã tồn tại!");
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            Logger.getLogger(QLKhoa.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return false;
+    }
     public void themKhoa() {
         if (checkNull()) {
             return;
         }
-        if (!Pattern.matches("[K][H]\\d{2,}", txtMaKhoa.getText())) {
-            JOptionPane.showMessageDialog(this, " Mã khoa không hợp lệ ^.^");
-            return;
-        }
-        else if (!Pattern.matches("\\w{1,}[@].{1,}", txtEmail.getText())) {
-            JOptionPane.showMessageDialog(this, "Email không hợp lệ ^.^");
-            return;
-        }
-        
+        if (checkInput()) return;        
         try {
             Khoa khoa = new Khoa();
             khoa.setMaKhoa(txtMaKhoa.getText().trim());
@@ -433,7 +504,6 @@ public class QLKhoa extends javax.swing.JFrame {
             if (s.getMessage().contains("Conversion failed when converting date")) {
                 JOptionPane.showMessageDialog(this, "Sai định dạng ngày: mời nhập năm-tháng-ngày");
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
             e.printStackTrace();
@@ -527,7 +597,6 @@ public class QLKhoa extends javax.swing.JFrame {
                 tblModel.addRow(row);
                 tblDanhSachKhoa.getColumnModel().getColumn(0).setPreferredWidth(20);
                 tblModel.fireTableDataChanged();
-                JOptionPane.showMessageDialog(this, "Tìm thấy khoa có mã: " + khoa.getMaKhoa() + "\nTên khoa cần tìm: " + khoa.getTenKhoa() + "\nXem chi tiết bên dưới!");
 
             } else if (khoa1 != null) {
                 txtTenKhoa.setText(khoa1.getTenKhoa());
@@ -547,7 +616,7 @@ public class QLKhoa extends javax.swing.JFrame {
                 tblModel.addRow(row);
                 tblDanhSachKhoa.getColumnModel().getColumn(0).setPreferredWidth(20);
                 tblModel.fireTableDataChanged();
-                JOptionPane.showMessageDialog(this, "Tìm thấy khoa: " + khoa1.getTenKhoa() + "\nXem chi tiết bên dưới!");
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Không tìm thấy khoa!");
             }
@@ -570,61 +639,7 @@ public class QLKhoa extends javax.swing.JFrame {
         txtMaKhoa.requestFocus();
     }
 
-    private boolean checkNull() throws HeadlessException {
-        if (txtMaKhoa.getText().trim().equals("")) {
-            JOptionPane.showConfirmDialog(this, "Mã khoa không được để trống", "Warning!", JOptionPane.CLOSED_OPTION);
-            return true;
-        }
-        if (txtTenKhoa.getText().trim().equals("")) {
-            JOptionPane.showConfirmDialog(this, "Tên khoa không được để trống", "Warning!", JOptionPane.CLOSED_OPTION);
-            return true;
-        }
-        if (txtTruongKhoa.getText().trim().equals("")) {
-            JOptionPane.showConfirmDialog(this, "Trưởng khoa không được để trống", "Warning!", JOptionPane.CLOSED_OPTION);
-            return true;
-        }
-        if (txtNgayThanhLap.getText().trim().equals("")) {
-            JOptionPane.showConfirmDialog(this, "Ngày thành lập không được để trống", "Warning!", JOptionPane.CLOSED_OPTION);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean checkTenKhoa(String tenKhoa) {
-        try {
-            
-            String sql = "select tenkhoa from KHOA";
-            PreparedStatement pstm = con.prepareStatement(sql);
-            ResultSet rs = pstm.executeQuery();
-            while (rs.next()) {
-                if (rs.getString("TenKhoa").equals(tenKhoa)) {
-                    JOptionPane.showMessageDialog(this, "Tên khoa đã tồn tại!");
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            Logger.getLogger(QLKhoa.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return false;
-    }
-
-    public boolean checkMaKhoa(String ma) {
-        try {
-            
-            String sql = "select makhoa from KHOA";
-            PreparedStatement pstm = con.prepareStatement(sql);
-            ResultSet rs = pstm.executeQuery();
-            while (rs.next()) {
-                if (rs.getString("MaKhoa").contains(ma)) {
-                    JOptionPane.showMessageDialog(this, "Mã khoa đã tồn tại!");
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            Logger.getLogger(QLKhoa.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return false;
-    }
+    
 
     private void loadToTable() {
         try {
@@ -632,7 +647,7 @@ public class QLKhoa extends javax.swing.JFrame {
             DefaultTableModel tblModel = new DefaultTableModel(title, 0);
             tblDanhSachKhoa.setModel(tblModel);
             //tblDanhSachKhoa.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer());
-            
+            Connection con = new ConnectDB().getCn();
             String sql = "select * from KHOA";
             PreparedStatement pstm = con.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
