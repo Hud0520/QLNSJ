@@ -61,13 +61,10 @@ public class ConnectDB {
     }
     public static void main(String[] args) {
             try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String connectionUrl = "jdbc:sqlserver://PCS-1952:1433;database=btlJava";
-            String user="sa";
-            String password="123456";            
-            Connection con = DriverManager.getConnection(connectionUrl, user, password);
+            ConnectDB db =new ConnectDB();
             
-            Statement stmt =con.createStatement();
+            
+            Statement stmt =db.cn.createStatement();
             String sql = "Select * from TAIKHOAN";
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
@@ -75,7 +72,7 @@ public class ConnectDB {
                 System.out.println("Ten : "+rs.getString(2));
             }
             rs.close() ;stmt.close();
-            con.close();
+            db.cn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
